@@ -33,7 +33,7 @@ def verify_user(access_token):
     return response.json()
 
 
-def get_data_user(access_token, id):
+def get_user_data(access_token, id):
     parameters = {"access_token": access_token, "client_id": get_client_id()}
     response = requests.get(API_MAHASISWA + id, params=parameters)
     return response.json()

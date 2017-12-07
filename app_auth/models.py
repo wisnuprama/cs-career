@@ -23,6 +23,7 @@ class User(models.Model):
     last_name = models.CharField('Last Name', max_length=100, blank=True)
     email = models.EmailField('Email', blank=True, unique=True)
     role = models.CharField('Role', blank=True, max_length=10)
+    angkatan = models.PositiveIntegerField('Angkatan')
     is_showing_score = models.BooleanField(default=False)
 
     # linkedin

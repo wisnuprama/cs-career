@@ -23,7 +23,7 @@ def check_user_existance(npm):
     return bool(User.objects.filter(npm=npm))
 
 
-def get_user_or_create(npm):
+def get_user_or_create(npm, **kwargs):
     '''
     Get user by NPM if user has existed, otherwise create new one and return it
     :param npm: identity number
@@ -34,6 +34,13 @@ def get_user_or_create(npm):
 
     else:
         user = User(npm=npm)
+
+        if kwargs:
+            if kwargs['angkatan']:
+                user.angkatan = kwargs['angkatan']
+            if kwargs['role']:
+                user.role = kwargs['role']
+
         user.save()
 
     return user
