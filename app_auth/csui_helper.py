@@ -1,4 +1,5 @@
 import requests
+from .utils import SSOException
 
 API_MAHASISWA = "https://api-dev.cs.ui.ac.id/siakngcs/mahasiswa/"
 API_VERIFY_USER = "https://akun.cs.ui.ac.id/oauth/token/verify/"
@@ -14,12 +15,11 @@ def get_access_token(username, password):
             'cache-control': "no-cache",
             'content-type': "application/x-www-form-urlencoded"
         }
-        response = requests.request("POST", url, data=payload, headers=headers)
+        response = requests.post(url, data=payload, headers=headers)
 
         return response.json()["access_token"]
-    except Exception as e:
-        return None
-        # raise Exception("username atau password sso salah, input : [{}, {}]".format(username, password,))
+    except Exception:
+        raise SSOException()
 
 
 def get_client_id():

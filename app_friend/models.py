@@ -7,8 +7,8 @@ from app_auth.models import User
 
 class Friend(models.Model):
     # connect between two people
-    user = models.ForeignKey(to=User, related_name='user')
-    friend = models.ForeignKey(to=User, related_name='friend')
+    user = models.ForeignKey(to=User)
+    friend = models.ForeignKey(to=User, related_name='user_friend')
 
     is_accepted = models.BooleanField(default=False)
 

@@ -15,12 +15,14 @@ class User(models.Model):
     """
 
     # basic user
-    npm = models.CharField('NPM', primary_key=True, max_length=10, editable=False)
+    npm = models.CharField('NPM', primary_key=True, max_length=10, editable=False, unique=True)
+    username = models.CharField('Username', unique=True, max_length=128)
+
+    # private
     first_name = models.CharField('First Name', max_length=100, blank=True)
     last_name = models.CharField('Last Name', max_length=100, blank=True)
     email = models.EmailField('Email', blank=True, unique=True)
-
-    # private
+    role = models.CharField('Role', blank=True, max_length=10)
     is_showing_score = models.BooleanField(default=False)
 
     # linkedin
@@ -38,9 +40,12 @@ class User(models.Model):
     def get_npm(self):
         return self.npm
 
-    def get_token_linkedin(self):
-        return self.token_linkedin
+    def getUsername(self):
+        return self.username
+
+    #
+    # def get_token_linkedin(self):
+    #     return self.token_linkedin
 
     class Meta:
-        ordering = ('npm', 'first_name', 'last_name',
-                    'birth_date', 'gender', 'created_at', 'updated_at')
+        ordering = ('npm', 'first_name', 'last_name', 'created_at', 'lastseen_at')

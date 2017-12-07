@@ -1,0 +1,87 @@
+@import url(fonts.css);
+
+body {
+    margin: 0 0 25rem 0;
+    padding: 0 0 20rem 0;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background: #F3F2F2;
+}
+
+.navbar-static-top {
+    margin: 0 0 10rem 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 3rem;
+    line-height: 15rem;
+    background: #f5f5f5;
+}
+
+content {
+    min-height:100%;
+}
+
+textarea {
+    resize:none;
+    border-radius: 50%;
+}
+
+button {
+    border-radius: 50%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Montserrat', serif;
+}
+
+.navbar-default {
+    z-index: 1000;
+    /*TODO change color*/
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.navbar-default .navbar-brand {
+    color: #22181c;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-brand .logo {
+    /* TODO ADAPT TO NEW LOGO */
+    margin-top: -10px;
+    max-width: 40px;
+    border: 2px solid whitesmoke;
+    border-radius: 50%;
+}
+
+.navbar-default .btn-user {
+    border-radius: 50%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+@media only screen and (max-width: 768px) {
+
+
+}

@@ -9,7 +9,7 @@ class Status(models.Model):
     Description:
 
     """
-    user = models.ForeignKey(User, related_name='user')
+    user = models.ForeignKey(User)
 
     content = models.CharField(max_length=350, blank=False, null=False)
     likes = models.PositiveIntegerField(default=0, blank=True, editable=True)
@@ -29,8 +29,8 @@ class Comment(models.Model):
     Description:
     """
     # relation
-    user = models.ForeignKey(User, related_name='user')
-    status = models.ForeignKey(Status, related_name='status')
+    user = models.ForeignKey(User)
+    status = models.ForeignKey(Status)
 
     content = models.CharField(max_length=350, blank=False, null=False)
     likes = models.PositiveIntegerField(default=0, blank=True, editable=True)

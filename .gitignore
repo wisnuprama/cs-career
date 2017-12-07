@@ -152,8 +152,7 @@ ENV/
 # End of https://www.gitignore.io/api/python,intellij+iml
 
 #Ignore files for django dan lab project
-/lab_*/migrations/__pycache__
-/lab_*/migrations/0*
+/app_*/migrations/0*
 /db.sqlite3
 /static/
 /chromedriver*

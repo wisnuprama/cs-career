@@ -1,0 +1,23 @@
+{% load static %}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      <div class="navbar-brand">
+        <div>
+            <!--TODO CHANGE TO HOME URL-->
+          <a href="{{ url }}">
+              <!--TODO CHANGE LOGO IMAGE-->
+            <img class="logo" src="">
+          </a>
+        </div>
+      </div>
+      <!-- TODO SEACRH AND PHOTO AND LOGO -->
+      <span id="btn-user" class="flex-item" onclick="openNav()">
+          {% if user.photo %}
+          <img src="{{ user.photo.url }}">&#9776;
+          {% else %}
+          <img src="{% static 'img/profile_pic.svg' %}">;
+          {% endif %}
+      </span>
+    </div>
+  </div>
+</nav>

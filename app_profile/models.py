@@ -25,10 +25,10 @@ class Expertise(models.Model):
         (LEGEND, LEGEND),
     )
 
-    user = models.ForeignKey(to=User, related_name='user')
+    user = models.ForeignKey(to=User)
 
     expertise = models.CharField('Expertise', max_length=45)
-    level = models.CharField('Level', choices=LEVEL_CHOICE)
+    level = models.CharField('Level', choices=LEVEL_CHOICE, max_length=15)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, editable=False)

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="shortcut icon" href="https://cdn1.iconfinder.com/data/icons/web-3/512/link-128.png" />
+      <title>{{ TITLE }} / {{ page_title }}</title>
+      <!-- stylesheet -->
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+      {% block stylesheet %}{% endblock %}
+  </head>
+  <body>
+      <header> 
+          {% include "app_home/partials/header.html" %}
+      </header>
+      <content>
+          {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+              <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% block content %}
+                  <!-- content goes here -->
+          {% endblock %}
+      </content>
+      <footer>
+          {% include "app_home/partials/footer.html" %}
+          {% block footer %}{% endblock %}
+      </footer>
+      <!-- javascript -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="application/javascript" src="{% static 'js/base.js' %}"></script>
+      {% block script %}{% endblock %}
+  </body>
+</html>

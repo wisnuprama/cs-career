@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat');
+
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lobster', cursive;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lobster', cursive;
+    font-weight: 300;
+    font-style: normal;
+}
