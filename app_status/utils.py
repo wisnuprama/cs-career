@@ -1,8 +1,9 @@
 from .models import Status
 from django.shortcuts import get_object_or_404
+from .serializers import StatusSerializer
 
 
-def get_status_queryset(user, **args):
+def get_status_queryset(user, *args):
     '''
     Get all user's status
     :param user: User user target
@@ -10,8 +11,8 @@ def get_status_queryset(user, **args):
     :return: QuerySet of User's Status
     '''
     query = None
-    if bool(args):
-        query = Status.objects.filter(user=user).order_by(*args)
+    if len(args) == 0:
+        query = Status.objects.filter(user=user).order_by(*kwargs)
 
     else:
         # DEFAULT ORDER
@@ -34,3 +35,8 @@ def delete_status_from_database(user, pk):
     status = get_object_or_404(Status, user=user, pk=pk)
     status.delete()
     return status
+
+
+def serialize_status(status):
+    from core.utils import serialize_instance
+    return serialize_instance(StatusSerializer, status)

@@ -1,11 +1,18 @@
 from rest_framework import serializers
 from .models import Status
-from app_auth.seriealizers import UserSerializer
+import app_auth.serializers as auth_serializers
+
+
+class StatuUserSerializer(auth_serializers.UserSerializer):
+
+    class Meta:
+        model = auth_serializers.User
+        fields = ('username', 'first_name')
 
 
 class StatusSerializer(serializers.ModelSerializer):
 
-    user = UserSerializer(read_only=True)
+    user = StatuUserSerializer(read_only=True)
 
     class Meta:
         model = Status

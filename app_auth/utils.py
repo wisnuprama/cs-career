@@ -1,6 +1,5 @@
 from .models import User
-import secrets
-import string
+from .serializers import UserSerializer
 
 
 class SSOException(Exception):
@@ -9,33 +8,34 @@ class SSOException(Exception):
         super().__init__(self, "Unidentified Username or Password")
 
 
-def generate_token():
-    BYTES = 32
-    return secrets.token_hex(BYTES)
-
-
-def check_user_existance(npm):
+def check_user_existance(**kwargs):
     '''
     Check if user has existed or not.
     :param npm: identity number
     :return: boolean True if user is exist, False otherwise
     '''
-    return bool(User.objects.filter(npm=npm))
+    if len(kwargs) == 0:
+        return False
+
+    return bool(User.objects.filter(**kwargs))
 
 
 def get_user_or_create(npm, **kwargs):
     '''
-    Get user by NPM if user has existed, otherwise create new one and return it
+    Get user by NPM if user has existed, otherwise create new one and return it.
+    The **kwargs argument is only for create, for get only using npm.
     :param npm: identity number
     :return: User
     '''
-    if check_user_existance(npm):
+    if check_user_existance(npm=npm):
         user = User.objects.get(npm=npm)
 
     else:
         user = User(npm=npm)
 
         if kwargs:
+            if kwargs['username']:
+                user.username = kwargs['username']
             if kwargs['angkatan']:
                 user.angkatan = kwargs['angkatan']
             if kwargs['role']:
@@ -44,6 +44,10 @@ def get_user_or_create(npm, **kwargs):
         user.save()
 
     return user
+
+
+def get_user_queryset(**kwargs):
+    return User.objects.filter(**kwargs)
 
 
 def get_user_session_data(request, key):
@@ -57,3 +61,8 @@ def get_user_session_data(request, key):
 
 def set_user_session_data(request):
     pass
+
+
+def serialize_user(user):
+    from core.utils import serialize_instance
+    return serialize_instance(UserSerializer, user)

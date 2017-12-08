@@ -27,10 +27,12 @@ def auth_login(request):
                 npm = verified_user['identity_number']
                 role = verified_user['role']
 
-                user_data = CSUIHelper.get_user_data(access_token=access_token, npm)
+                user_data = CSUIHelper.get_user_data(access_token=access_token, id=npm)
                 user = AuthUtils.get_user_or_create(npm=npm,
+                                                    username=__USERNAME__,
                                                     role=role,
-                                                    angkatan=user_data['program'][0]['angkatan'])
+                                                    angkatan=user_data['program'][0]['angkatan']
+                                                    )
 
                 # set user session
                 request.session['user_login'] = user.getUsername()

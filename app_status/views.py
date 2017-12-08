@@ -1,63 +1,15 @@
-from django.shortcuts import render, get_object_or_404
 from rest_framework import status
-from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, \
-    Http404, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import HttpResponseBadRequest
 # -----
-from tp_2_ppw import strings
-from app_status import utils, forms
-from app_auth import utils as AuthUtils
-
-RESPONSE_ATTRS = {
-    'content_type': 'application/json',
-    'error_reason': {
-        'no_access': 'ERROR: You don\'t have an access',
-        'no_method': 'ERROR: Unexpected method',
-        'no_data': 'ERROR: No data posted'
-    },
-
-}
+from app_status import utils, forms, serializers
+from core.abstract_view import response, RESPONSE_ATTRS
 
 
 # Create your views here.
-def response(request, method, callback, status_code=status.HTTP_200_OK, *args, **kwargs):
-    '''
-    This function is used for basic method to return json response. To use this function
-    you need to create callback function to use this function, include the callback function in the parameter.
-    The callback function must return tuplpe consists of response in dict/list format
-    and json safe parameter (for more information please read documentation for JsonResponse Safe Parameter).
-
-    :param request: HttpRequest
-    :param method: String REST method
-    :param callback: Function callback
-    :param status_code: int for JsonResponse status
-    :param args:
-    :param kwargs:
-    :return: JsonResponse response
-    '''
-
-    if request.method == method:
-
-        if 'user_npm' in request.session:
-
-            user = AuthUtils.get_user_or_create(npm=request.session['user_npm'])
-            result = callback(user=user)
-
-            if result:
-                return JsonResponse(data=result, status=status_code,
-                                    content_type=RESPONSE_ATTRS['content_type'])
-
-        else:
-            return HttpResponseForbidden(reason=RESPONSE_ATTRS['error_reason']['no_access'],
-                                         content_type=RESPONSE_ATTRS['content_type'])
-
-    return HttpResponseBadRequest(reason=RESPONSE_ATTRS['error_reason']['no_method'],
-                                  content_type=RESPONSE_ATTRS['content_type'])
-
 
 def get(request):
     def callback(user):
-        query = utils.get_status_queryset(user=user)
+        query = [utils.serialize_status(st) for st in utils.get_status_queryset(user=user)]
         result = {
             'username': user.username,
             'full_name': user.get_full_name(),
@@ -76,20 +28,13 @@ def post(request):
         result = None
         if form.is_valid():
             content = request.POST['content']
-            status = Status(user=user, content=content)
-            status.save()
+            status = utils.insert_status_to_database(user=user, content=content)
 
             result = {
                 'username': user.username,
                 'full_name': user.get_full_name(),
                 'role': user.role,
-                'result': {
-                    'status': {
-                        'content': status.content,
-                        'likes': status.likes,
-                        'created_at': status.created_at,
-                    }
-                }
+                'result': utils.serialize_status(status),
             }
 
         return result
@@ -105,13 +50,7 @@ def delete(request, **kwargs):
                 'username': user.username,
                 'full_name': user.get_full_name(),
                 'role': user.role,
-                'result': {
-                    'status': {
-                        'content': status.content,
-                        'likes': status.likes,
-                        'created_at': status.created_at,
-                    }
-                }
+                'result': utils.serialize_status(status)
             }
 
             return result

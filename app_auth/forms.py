@@ -1,5 +1,6 @@
-from django.forms import forms
+from django import forms
 from .csui_helper import verify_user
+
 
 class LoginForm(forms.Form):
     error_messages = {
