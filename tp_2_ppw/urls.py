@@ -19,8 +19,8 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^/', include('app_web.urls', namespace='website')),
-    url(r'^auth/', include('app_auth.urls', namespace='api-auth')),
+    url(r'^web/', include('app_web.urls', namespace='web')),
+    url(r'^auth/', include('app_auth.urls', namespace='auth')),
     url(r'^api/friend/', include('app_friend.urls', namespace='api-friend')),
     url(r'^api/profile/', include('app_profile.urls', namespace='api-profile')),
     url(r'^api/service/', include('app_service.urls', namespace='api-service')),

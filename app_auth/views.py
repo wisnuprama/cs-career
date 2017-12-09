@@ -16,7 +16,7 @@ def auth_login(request):
 
         try:
             access_token = CSUIHelper.get_access_token(__USERNAME__, __PASSWORD__)
-        except SSOException as e:
+        except AuthUtils.SSOException as e:
             print(e)
             access_token = None
 
@@ -35,7 +35,7 @@ def auth_login(request):
                                                     )
 
                 # set user session
-                request.session['user_login'] = user.getUsername()
+                request.session['user_login'] = user.get_username()
                 request.session['user_npm'] = user.get_npm()
                 request.session['access_token'] = access_token
                 messages.success(request, "Login: success")
@@ -50,11 +50,11 @@ def auth_login(request):
         return HttpResponseBadRequest(reason='Error: Unexpected method')
 
     # TODO FINISH WITH REVERSE URL
-    return HttpResponseRedirect()
+    return HttpResponseRedirect(reverse('web:dashboard'))
 
 
 def auth_logout(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         request.session.flush()
         mess = "Logout: Success"
     else:
@@ -63,4 +63,4 @@ def auth_logout(request):
     messages.info(request, mess)
 
     # TODO FINISH WITH REVERSE URL
-    return HttpResponseRedirect()
+    return HttpResponseRedirect(reverse('web:index'))

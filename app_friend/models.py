@@ -5,12 +5,10 @@ from app_auth.models import User
 # Create your models here.
 
 
-class Friend(models.Model):
+class Friendship(models.Model):
     # connect between two people
-    user = models.ForeignKey(to=User)
-    friend = models.ForeignKey(to=User, related_name='user_friend')
-
-    is_accepted = models.BooleanField(default=False)
+    user1 = models.ForeignKey(to=User, related_name='user1')
+    user2 = models.ForeignKey(to=User, related_name='user2')
 
     created_at = models.DateTimeField(auto_now_add=True)
 

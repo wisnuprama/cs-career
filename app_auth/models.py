@@ -41,7 +41,7 @@ class User(models.Model):
     def get_npm(self):
         return self.npm
 
-    def getUsername(self):
+    def get_username(self):
         return self.username
 
     #

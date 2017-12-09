@@ -12,7 +12,7 @@ def get_status_queryset(user, *args):
     '''
     query = None
     if len(args) == 0:
-        query = Status.objects.filter(user=user).order_by(*kwargs)
+        query = Status.objects.filter(user=user).order_by(*args)
 
     else:
         # DEFAULT ORDER

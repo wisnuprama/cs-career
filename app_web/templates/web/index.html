@@ -1,0 +1,71 @@
+{% extends "web/layout/base.html" %}
+{% load static %}
+{% block content %}
+<section>
+  <!-- TODO flex row -->
+  <div id="dashboard" class="dashboard">
+    <!--TODO flex column: profile forum status terakhir -->
+    <div class="section-profile">
+      <!-- TODO flex column: profile -->
+      <div class="profile bottom-space">
+        <!-- TODO cover -->
+        <div class="img-cover"></div>
+        <!-- TODO flex row: foto dan nama username -->
+        <div class="about">
+          <div class="user-dp">
+            <!--TODO PHOTO STILL MISSING-->
+            <img href="{% static 'img/user_dummy.png' %}">
+          </div>
+          <div class="user">
+            <h3 id="username"> @LoremIpsum </h3>
+            <span id="name"> lorem ipsum dolor </span>
+          </div>
+        </div>
+        <!-- TODO flex row: statistik status friends -->
+        <div class="stats">
+          <div id="stats-status" class="stat-content">
+            <h4 class="title"> Status </h4>
+            <span class="content"> 1 </span>
+          </div>
+          <div id="stats-friends" class="stat-content">
+            <h4 class="title"> Friends </h4>
+            <span class="content"> 99 </span>
+          </div>
+        </div>
+      </div>
+      <!-- TODO tombol lihat forum -->
+      <div class="forum bottom-space">
+        <!--button-->
+        <button href=""> Lihat Forum </button>
+      </div>
+      <!-- TODO flex column: status terakhir -->
+      <div class="latest bottom-space">
+        {% if latest_status %}
+        <h4 class="head"> Status Terakhir </h4>
+        <!-- TODO implement status -->
+        <div class="content">
+          <!--content-->
+          {{ latest_status.content }}
+        </div>
+        {% else %}
+        <h3><i class="head"> Belum ada Status. </i></h3>
+        {% endif %}
+      </div>
+    </div>
+    <!--TODO flex column: tab dan isi -->
+    <!-- TODO implementasi dengan javascript untuk pindah tab -->
+    <div>
+      <!-- TAB -->
+      <div></div>
+      <!-- ISI DARI TIAP TAB -->
+      <div></div>
+    </div>
+    <!-- TODO ada space di kanan bisa diisi-->
+    <div>
+
+    </div>
+  </div>
+  <a href="{% url 'api-status:get-status' %}">test api status</a>
+  <a href="{% url 'api-service:get-data-mahasiswa' %}">test api service</a>
+</section>
+{% endblock %}

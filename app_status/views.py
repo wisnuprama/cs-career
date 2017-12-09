@@ -2,7 +2,7 @@ from rest_framework import status
 from django.http import HttpResponseBadRequest
 # -----
 from app_status import utils, forms, serializers
-from core.abstract_view import response, RESPONSE_ATTRS
+from core.abstract_view import response, RESPONSE_ATTRS, AUTH_TYPE
 
 
 # Create your views here.
@@ -19,7 +19,7 @@ def get(request):
 
         return result
 
-    return response(request, method='GET', callback=callback)
+    return response(request, method='GET', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def post(request):
@@ -39,7 +39,7 @@ def post(request):
 
         return result
 
-    return response(request, method='POST', callback=callback)
+    return response(request, method='POST', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def delete(request, **kwargs):
@@ -58,7 +58,7 @@ def delete(request, **kwargs):
         # status code for delete:
         #   200 if the response include the entity
         #   204 if the response doesnt include the entity
-        return response(request, method='DELETE', callback=callback)
+        return response(request, method='DELETE', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
 
     return HttpResponseBadRequest(reason=RESPONSE_ATTRS['error_reason']['no_data'],
                                   content_type=RESPONSE_ATTRS['content_type'])

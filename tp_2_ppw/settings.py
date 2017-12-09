@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'app_profile',
     'app_service',
     'app_status',
+    'app_web',
 ]
 
 MIDDLEWARE = [
@@ -66,9 +67,7 @@ ROOT_URLCONF = 'tp_2_ppw.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR + 'tp_2_ppw/templates/',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

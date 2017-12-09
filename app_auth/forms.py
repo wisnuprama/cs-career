@@ -25,5 +25,5 @@ class LoginForm(forms.Form):
         'placeholder': 'SSO Password',
     }
 
-    username = forms.CharField(label='Username', required=True, widget=forms.TextInput(attrs=username_attrs))
-    password = forms.CharField(label='Password', required=True, widget=forms.TextInput(attrs=password_attrs))
+    username = forms.CharField(label='Username SSO', required=True, widget=forms.TextInput(attrs=username_attrs))
+    password = forms.CharField(label='Password SSO', required=True, widget=forms.TextInput(attrs=password_attrs))

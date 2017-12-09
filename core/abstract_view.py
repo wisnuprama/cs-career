@@ -14,8 +14,13 @@ RESPONSE_ATTRS = {
 
 }
 
+AUTH_TYPE = {
+    'LOGIN': 0,
+    'TOKEN': 1
+}
 
-def response(request, method, callback, status_code=status.HTTP_200_OK, *args, **kwargs):
+
+def response(request, method, auth_type, callback, status_code=status.HTTP_200_OK, *args, **kwargs):
     '''
     This function is used for basic method to return json response. To use this function
     you need to create callback function to use this function, include the callback function in the parameter.
@@ -24,6 +29,7 @@ def response(request, method, callback, status_code=status.HTTP_200_OK, *args, *
 
     :param request: HttpRequest
     :param method: String REST method
+    :param auth_type: int login type
     :param callback: Function callback
     :param status_code: int for JsonResponse status
     :param args:
@@ -33,27 +39,27 @@ def response(request, method, callback, status_code=status.HTTP_200_OK, *args, *
 
     if request.method == method:
 
-        if 'user_npm' in request.session:
+        result = None
 
+        if auth_type == 0 and 'user_npm' in request.session:
             user = auth_utils.get_user_or_create(npm=request.session['user_npm'])
             result = callback(user)
 
-        elif 'public_token' in request.GET and service_utils.check_token_existance(
-                token=request.GET['public_token']):
-
+        elif auth_type == 1 and 'public_token' in request.GET:
             token = request.GET['public_token']
-            access = service_utils.get_accessor_or_create(token=token)
-            result = callback(access)
+            access = service_utils.check_token_existance(token=token)
 
-        else:
-            return HttpResponseForbidden(reason=RESPONSE_ATTRS['error_reason']['no_access'],
-                                         content_type=RESPONSE_ATTRS['content_type'])
-
+            if access:
+                acc = service_utils.get_accessor_or_create(token=token)
+                result = callback(acc)
 
         # return the json response
         if result:
             return JsonResponse(data=result, status=status_code,
                                 content_type=RESPONSE_ATTRS['content_type'])
+
+        return HttpResponseForbidden(reason=RESPONSE_ATTRS['error_reason']['no_access'],
+                                     content_type=RESPONSE_ATTRS['content_type'])
 
     return HttpResponseBadRequest(reason=RESPONSE_ATTRS['error_reason']['no_method'],
                                   content_type=RESPONSE_ATTRS['content_type'])

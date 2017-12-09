@@ -1,0 +1,31 @@
+{% load static %}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-brand">
+    <a class="elem-header logo" href="{% url 'web:dashboard' %}">
+      <span class="font-lobster logo-text">
+        Ling In
+      </span>
+    </a>
+  </div>
+  <div class="elem-header">
+    <!-- TODO SEACRH AND PHOTO AND LOGO -->
+    <div class="nav navbar-nav navbar-right">
+      <div class="dropdown">
+        {% if user_login %}
+        <!-- TODO USER PHOTO-->
+        <div>
+          <span id="btn-user" class="btn-user" onclick="openNav()">
+            <!-- TODO logout temporary until dropdown menu is done -->
+            <a href="{% url 'auth:logout' %}" title="logout temporary">
+              <img src="{% static 'img/user_dummy.png' %}">
+            </a>
+          </span>
+        </div>
+        {% else %}
+        <!-- LOGIN -->
+        <button class="btn-login"> Masuk <!--<span class="caret"></span> --></button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

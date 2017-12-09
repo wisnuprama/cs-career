@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from core.abstract_view import response
+from core.abstract_view import response, AUTH_TYPE
 import app_service.utils as service_utils
 
 
 # Create your views here.
 
 def get(request):
-    def callback(access):
+    def callback(accesss):
 
         query = {}
 
@@ -31,4 +31,4 @@ def get(request):
 
         return result
 
-    return response(request, method='GET', callback=callback)
+    return response(request, method='GET', auth_type=AUTH_TYPE['TOKEN'], callback=callback)
