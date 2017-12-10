@@ -18,7 +18,7 @@ def index(request, data):
     if data['number_of_status'] > 0:
         # start from page one
         data['latest_status'] = utils.get_latest_status(user=user)
-        data['query_of_status'] = utils.get_status_queryset(user=user)[:10]
+        data['query_of_status'] = utils.get_status_queryset(user=user)[:11]
 
 
 def get(request):

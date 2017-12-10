@@ -1,4 +1,4 @@
-{% load static %}
+<link rel="stylesheet" href="../../../static/css/base.css">{% load static %}
 <nav class="header">
   <div class="navbar-base">
     <!--LOGO-->
@@ -16,18 +16,21 @@
       </div>
       <div class="account">
         <div class="menu-dropdown">
-          <div class="btn-user">
+          <div id="btn-user">
             <img src="{% static 'img/user_dummy.png' %}">
           </div>
-          <div class="menu-content">
+          <div id="menu-content" class="menu-content">
+            <span class="arrow-up"></span>
+            <div class="square">
 
+            </div>
           </div>
         </div>
       </div>
       {% else %}
       <div class="account">
         <div class="menu-dropdown">
-          <button class="btn-login"> Masuk </button>
+          <button id="btn-login"> Masuk </button>
         </div>
       </div>
       {% endif %}

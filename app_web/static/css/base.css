@@ -1,5 +1,24 @@
 @import url(fonts.css);
 
+/*html, body, div, span, applet, object, iframe,*/
+/*h1, h2, h3, h4, h5, h6, p, blockquote, pre,*/
+/*a, abbr, acronym, address, big, cite, code,*/
+/*del, dfn, em, font, img, ins, kbd, q, s, samp,*/
+/*small, strike, strong, sub, sup, tt, var,*/
+/*dl, dt, dd, ol, ul, li,*/
+/*fieldset, form, label, legend,*/
+/*table, caption, tbody, tfoot, thead, tr, th, td {*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*border: 0;*/
+  /*outline: 0;*/
+  /*font-weight: inherit;*/
+  /*font-style: inherit;*/
+  /*font-size: 100%;*/
+  /*font-family: inherit;*/
+  /*vertical-align: baseline;*/
+/*}*/
+
 html {
   height: 100%;
 }
@@ -34,9 +53,10 @@ textarea {
   padding: 1rem 1rem 1rem 1rem;
   outline: none;
   overflow: auto;
+  background-color: #fff;
 }
 
-textarea::-webkit-scrollbar{
+textarea::-webkit-scrollbar {
   display: none;
 }
 
@@ -188,8 +208,7 @@ p {
 
 .header .navbar-base .navbar-right .account {
   position: relative;
-  width: 35%;
-  height: 7.5rem;
+  min-width: 35%;
   border-left: 0.1rem solid rgba(171, 184, 193, 0.5);
   margin-left: 3rem;
 }
@@ -197,49 +216,51 @@ p {
 .header .navbar-base .navbar-right .account .menu-dropdown {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: inherit;
+  height: 10%;
+  margin: 0;
+  padding-left: 3rem;
   width: inherit;
 }
 
-.header .navbar-base .navbar-right .account .menu-dropdown .menu-content {
-  display: block;
-  height: 20rem;
-  width: inherit;
-  background-color: #fff;
-}
-
-.header .navbar-base .navbar-right .account .menu-dropdown:hover .menu-content {
-  display: flex;
-}
-
-.header .navbar-base .navbar-right .account .menu-content .btn-user {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.header .navbar-base .navbar-right .account .btn-user img {
+.header .navbar-base .navbar-right .account #btn-user img {
   border-radius: 50%;
   object-fit: contain;
-  height: 5rem;
-  width: 5rem;
+  height: 4.5rem;
+  width: 4.5rem;
 }
 
-.header .navbar-base .navbar-right .account .btn-login {
+.header .navbar-base .navbar-right .account #btn-login {
   font-weight: bold;
   padding: 1rem 2rem 1rem 2rem;
   background-color: #698491;
   color: #e6ecf1;
 }
+
+/*.header .navbar-base .navbar-right .account .menu-content {*/
+  /*position: relative;*/
+  /*display: none;*/
+  /*flex-direction: column;*/
+  /*justify-content: flex-start;*/
+  /*align-items: center;*/
+  /*height: 30rem;*/
+  /*width: 20rem;*/
+  /*padding: 1rem 1rem 0 0;*/
+/*}*/
+
+/*.header .navbar-base .navbar-right .account .menu-content .arrow-up {*/
+  /*width: 0;*/
+  /*height: 0;*/
+  /*border-left: 2rem solid transparent;*/
+  /*border-right: 2rem solid transparent;*/
+  /*border-bottom: 2rem solid #fff;;*/
+/*}*/
+
+/*.header .navbar-base .navbar-right .account .menu-content .square {*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*background-color: #fff;*/
+/*}*/
+
 
 /* HOME LAYOUT */
 .dashboard {
@@ -269,6 +290,7 @@ p {
   border-radius: 0.5rem;
   background-color: #fff;
   overflow: hidden;
+  A
 }
 
 .dashboard .section-profile .profile .img-cover {
@@ -422,7 +444,6 @@ p {
   /*background-color: rgba(171, 184, 193, 0.2);*/
 }
 
-
 .dashboard .section-activity .activity-tab .tab-button:hover {
   color: inherit;
   background-color: rgba(171, 184, 193, 0.2);
@@ -431,7 +452,7 @@ p {
 .dashboard .section-activity .tab-content {
   display: flex;
   border-radius: inherit;
-  box-shadow: 0 -0.08rem 0.2rem  rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -0.08rem 0.2rem rgba(0, 0, 0, 0.2);
   /* TODO change to 100% after the data is ready so it could be more flexible*/
   height: 100%;
   -webkit-transition: all 0.3s ease;
@@ -483,6 +504,7 @@ p {
   padding-right: 3rem;
   width: 90%;
 }
+
 #tab-status #post-status .input-status #status-textarea {
   border-radius: 1rem;
   width: 100%;
@@ -566,15 +588,33 @@ p {
   transition: all 0.3s ease;
 }
 
-
 #tab-status #timeline .status .right-status .trash:hover {
   color: rgba(103, 119, 113, 0.6);
 }
 
-@media only screen and (max-width: 1700px) {
+@media only screen and (max-width: 1025px) {
+
+  body {
+    padding-top: 5rem;
+  }
+
+  .header {
+    padding: 0;
+  }
+
+  .header .navbar-base .navbar-right .account {
+    margin: 0;
+  }
+
+  .header .navbar-base .navbar-right .account .menu-dropdown {
+    padding-left: 2rem;
+  }
+
   .dashboard {
-    padding: 0 3rem 0 3rem;
-    flex-direction: column-reverse;
+    padding: 0 1.5rem 0 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
   }
 
   .dashboard .section-profile {
@@ -584,6 +624,33 @@ p {
 
   .dashboard .section-activity {
     width: 100%;
+  }
+
+  .user-dp {
+    display: none;
+  }
+
+  .header .navbar-base .navbar-right .search-bar {
+    display: none;
+  }
+
+  .dashboard .section-activity .activity-tab {
+    overflow: auto;
+    outline: none;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+  .dashboard .section-activity .activity-tab::-webkit-scrollbar {
+    display:none
+  }
+
+  #tab-status #timeline .status {
+    flex-direction: column;
+    padding: 0 3rem 0 3rem;
+  }
+
+  #tab-status #timeline .status .status-content, .right-status, span {
+    max-width: 100%;
   }
 
   #tab-status #post-status .user-dp {

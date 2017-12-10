@@ -8,20 +8,67 @@ const URL = {
   'friend': {},
 };
 
+const propState = {
+  'status': {
+    'progress': false,
+    'next': URL.status.GET + '?page=2',
+    'previous': URL.status.GET + '?page=1',
+  },
+};
+
 const canLoadPage = () => {
-  return $('#timeline').length > 10;
+  return $('.status').length > 10 && !propState.status.progress
+      && propState.status.next !== '';
+};
+
+const addStatusToTimeline = (status, to) => {
+  html = '<div class="status">\n' +
+      '     <div class="user-dp">\n' +
+      '       <img src="/static/img/user_dummy.png">\n' +
+      '     </div>\n' +
+      '     <div class="status-content">\n' +
+      '       <span>\n' +
+      '         <h3>' + status.user.first_name + '</h3>\n' +
+      '         <p>' + status.user.username + '</p>\n' +
+      '       </span>\n' +
+      '         <p>' + status.content + '</p>\n' +
+      '      </div>\n' +
+      '      <div class="right-status">' +
+      '        <span class="status-date">\n' + status.created_at + '</span>\n' +
+      '        <button class="fa fa-trash-o trash" aria-hidden="true"></button>\n' +
+      '      </div>\n' +
+      ' </div>';
+
+  const newStatus = $(html);
+  newStatus.hide();
+  if(to === 'top' || to === 'TOP'){
+    $('#timeline').prepend(newStatus);
+    newStatus.show('normal');
+  } else if (to==='bottom' || to==='BOTTOM') {
+    $('#timeline').append(newStatus);
+    newStatus.fadeIn('slow');
+  }
 };
 
 const WINDOW = $(window);
-let progress = false;
 WINDOW.scroll(() => {
-  console.log(progress)
-  if (WINDOW.scrollTop() + WINDOW.height() > $(document).height() - 10 && !progress && canLoadPage()) {
-    progress = true;
+
+  if (WINDOW.scrollTop() + WINDOW.height() > $(document).height() - 10 && canLoadPage()) {
+    propState.status.progress = true;
     $.ajax({
       method: 'GET',
-      url: URL.status.GET,
-      data: {
+      url: propState.status.next,
+      success: (response) => {
+        const result = response.result;
+        for(let i=0; i < result.length; i++){
+          addStatusToTimeline(result[i], 'BOTTOM')
+        }
+
+        propState.status.next = response.next_page;
+        propState.status.previous = response.previous_page;
+        propState.status.progress = false;
+      },
+      error: () => {
 
       }
     })
@@ -67,11 +114,10 @@ const openTab = (event, idTab) => {
 
   // change tab content
   const tabContent = $('.tab-content');
-  const inactive = 'none';
   for (i = 0; i < tabContent.length; i++) {
-    $(tabContent[i]).css('display', inactive);
+    $(tabContent[i]).hide();
   }
-  $('\#' + idTab).css('display', 'flex');
+  $('\#' + idTab).fadeToggle('slow');
 };
 
 const calculateChar = () => {
@@ -99,24 +145,7 @@ $(document).ready(() => {
       success: (response) => {
         //add to top of timeline
         const status = response.result;
-        html = '<div class="status">\n' +
-            '     <div class="user-dp">\n' +
-            '       <img src="/static/img/user_dummy.png">\n' +
-            '     </div>\n' +
-            '     <div class="status-content">\n' +
-            '       <span>\n' +
-            '         <h3>' + status.user.first_name + '</h3>\n' +
-            '         <p>' + status.user.username + '</p>\n' +
-            '       </span>\n' +
-            '         <p>' + status.content + '</p>\n' +
-            '      </div>\n' +
-            '      <div class="right-status">' +
-            '        <span class="status-date">\n' + status.created_at + '</span>\n' +
-            '        <button class="fa fa-trash-o trash" aria-hidden="true"></button>\n' +
-            '      </div>\n' +
-            ' </div>';
-
-        $('#timeline').prepend(html);
+        addStatusToTimeline(status, 'TOP');
         // change latest status
         $('#latest-status-content').text(status.content);
         // increament the numbers of status
@@ -133,6 +162,10 @@ $(document).ready(() => {
     });
 
     event.preventDefault();
-  })
+  });
+
+  $('#btn-user').on('active', (event) =>{
+
+  });
 
 });
