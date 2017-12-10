@@ -41,9 +41,17 @@ def response(request, method, auth_type, callback, status_code=status.HTTP_200_O
 
         result = None
 
-        if auth_type == 0 and 'user_npm' in request.session:
-            user = auth_utils.get_user_or_create(npm=request.session['user_npm'])
-            result = callback(user)
+        if auth_type == 0:
+            if 'user_login' in request.session:
+                npm = request.session['user_login']['npm']
+                user = auth_utils.get_user_or_create(npm=npm)
+                result = callback(user)
+            #
+            # using session to identified user
+            # elif auth_utils.check_user_session_existence(request):
+            #     sess = auth_utils.get_user_session(request)
+            #     sess_data = sess.get_decoded()
+            #     print(sess_data)
 
         elif auth_type == 1 and 'public_token' in request.GET:
             token = request.GET['public_token']

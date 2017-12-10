@@ -35,8 +35,7 @@ def auth_login(request):
                                                     )
 
                 # set user session
-                request.session['user_login'] = user.get_username()
-                request.session['user_npm'] = user.get_npm()
+                request.session['user_login'] = AuthUtils.serialize_user(user=user)
                 request.session['access_token'] = access_token
                 messages.success(request, "Login: success")
 

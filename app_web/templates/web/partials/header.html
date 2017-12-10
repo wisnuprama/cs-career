@@ -9,6 +9,7 @@
     </div>
     <!--SEARH DAN ACCOUNT-->
     <div class="navbar-right">
+      {% if user_login %}
       <div class="search-bar">
         <input type="search" href="" placeholder="Search">
         <a class="fa fa-search" aria-hidden="true" href=""></a>
@@ -16,13 +17,20 @@
       <div class="account">
         <div class="menu-dropdown">
           <div class="btn-user">
-            <img href="{% static 'img/user_dummy.png' %}">
+            <img src="{% static 'img/user_dummy.png' %}">
           </div>
           <div class="menu-content">
 
           </div>
         </div>
       </div>
+      {% else %}
+      <div class="account">
+        <div class="menu-dropdown">
+          <button class="btn-login"> Masuk </button>
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
 </nav>

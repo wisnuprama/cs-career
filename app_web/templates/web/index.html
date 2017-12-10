@@ -14,22 +14,22 @@
         <div class="about">
           <div class="user-dp">
             <!--TODO PHOTO STILL MISSING-->
-            <img href="{% static 'img/user_dummy.png' %}">
+            <img src="{% static 'img/user_dummy.png' %}">
           </div>
           <div class="user">
-            <h3 id="username"> @LoremIpsum </h3>
-            <span id="name"> lorem ipsum dolor </span>
+            <h3 id="username"> @{{ user_login.username }} </h3>
+            <span id="name"> {{ user_login.full_name }} </span>
           </div>
         </div>
         <!-- TODO flex row: statistik status friends -->
         <div class="stats">
           <div id="stats-status" class="stat-content">
             <h4 class="title"> Status </h4>
-            <span class="content"> 1 </span>
+            <span id="stat-status-number" class="content"> {{ number_of_status }} </span>
           </div>
           <div id="stats-friends" class="stat-content">
             <h4 class="title"> Friends </h4>
-            <span class="content"> 99 </span>
+            <span class="content"> {{ number_of_friend }} </span>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <!-- TODO implement status -->
         <div class="content">
           <!--content-->
-          {{ latest_status.content }}
+          <p id="latest-status-content">{{ latest_status.content }}</p>
         </div>
         {% else %}
         <h3><i class="head"> Belum ada Status. </i></h3>
@@ -63,7 +63,39 @@
         <button id="tab-button-profile" class="tab-button" onclick="openTab(event, 'tab-profile')"> Profile </button>
       </div>
       <!-- ISI DARI TIAP TAB -->
-      <div id="tab-status" class="tab-content">haha</div>
+      <div id="tab-status" class="tab-content">
+        <!-- post status -->
+        <div id="post-status">
+          <div class="user-dp">
+            <img src="{% static 'img/user_dummy.png' %}">
+          </div>
+          <form class="input-status">
+            {% csrf_token %}
+            {{ status_form }}
+            <button id="submit-post" type="submit" value="Submit"> Kirim </button>
+          </form>
+        </div>
+        <div id="timeline">
+          {% for status in query_of_status %}
+          <div id="status-{{status.id}}" class="status">
+            <div class="user-dp">
+              <img src="{% static 'img/user_dummy.png' %}">
+            </div>
+            <div class="status-content">
+              <span>
+                <h3>{{status.user.get_full_name}}</h3>
+                <p>@{{status.user.username}}</p>
+              </span>
+              <p>{{status.content}}</p>
+            </div>
+            <div class="right-status">
+              <span class="status-date">{{status.created_at|date:'M. d, Y, H:i'}}</span>
+              <button class="fa fa-trash-o trash" aria-hidden="true" onclick="deleteStatus('status-{{status.id}}')"></button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
       <div id="tab-riwayat" class="tab-content">hehe</div>
       <div id="tab-profile" class="tab-content">hihi</div>
       <div id="tab-teman" class="tab-content">hoho</div>

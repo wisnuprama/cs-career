@@ -1,6 +1,9 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
-import app_auth.forms as auth_form
+from app_auth import forms as auth_form
+from app_status import views as status_views
+from app_friend import views as friend_views
+from core import strings
 
 
 # Create your views here.
@@ -11,6 +14,9 @@ def index(request):
 
     html = 'web/auth/login.html'
     response = {
+        'TITLE': strings.TITLE,
+        'page_title': 'Welcome',
+        'YEAR': strings.YEAR,
         'login_form': auth_form.LoginForm,
     }
 
@@ -23,6 +29,9 @@ def index_dashboard(request):
 
     html = 'web/index.html'
     response = {
+        'TITLE': strings.TITLE,
+        'page_title': 'Dashboard',
+        'YEAR': strings.YEAR,
         'user_login': request.session['user_login']
     }
 
@@ -50,7 +59,12 @@ def index_dashboard(request):
     jika memang page yang kamu buat adalah page berbeda dari dashboard,
     boleh buat sendiri seperti views biasa yang dikerjakan di lab karena page
     berbeda.
+    
+    contoh ada dibawah ini:
+        - fungsi tidak mengembalikan apa2, dia hanya mengedit dictionary response
+          masukan data ke dictionary tersebut
     '''
-
+    status_views.index(request, response)
+    friend_views.index(request, response)
 
     return render(request, html, response)

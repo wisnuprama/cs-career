@@ -1,4 +1,4 @@
 from django.utils import timezone
 
-TITLE = 'Ling In'
+TITLE = 'CSC'
 YEAR = timezone.now().year

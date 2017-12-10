@@ -1,13 +1,17 @@
 @import url(fonts.css);
 
+html {
+  height: 100%;
+}
+
 body {
-  margin: 0 0 25rem 0;
-  padding: 13.5rem 0 20rem 0;
+  margin: 0 0 0 0;
+  padding: 13.5rem 0 10rem 0;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   color: #333;
   background-color: #E4EBF0;
-  height: 100%;
+  min-height: 100%;
 }
 
 footer {
@@ -26,7 +30,14 @@ content {
 
 textarea {
   resize: none;
-  border-radius: 50%;
+  border-radius: 50rem;
+  padding: 1rem 1rem 1rem 1rem;
+  outline: none;
+  overflow: auto;
+}
+
+textarea::-webkit-scrollbar{
+  display: none;
 }
 
 button {
@@ -49,7 +60,26 @@ h1 {
 }
 
 h2, h3, h4, h5 {
+  font-weight: bold;
   font-family: 'Roboto', serif;
+}
+
+p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.user-dp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 1;
+}
+
+.user-dp img {
+  border-radius: 50%;
+  object-fit: contain;
 }
 
 .font-lobster {
@@ -59,6 +89,7 @@ h2, h3, h4, h5 {
 /* USE COMMENT TO SEPERATE BETWEEN APP */
 
 /* HOME */
+
 .header {
   position: fixed;
   top: 0;
@@ -203,7 +234,7 @@ h2, h3, h4, h5 {
   width: 5rem;
 }
 
-.header .navbar-base .navbar-right .btn-login {
+.header .navbar-base .navbar-right .account .btn-login {
   font-weight: bold;
   padding: 1rem 2rem 1rem 2rem;
   background-color: #698491;
@@ -216,6 +247,7 @@ h2, h3, h4, h5 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 0 0.7rem 0 0.7rem;
 }
 
 .dashboard .bottom-space {
@@ -227,8 +259,7 @@ h2, h3, h4, h5 {
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: space-around;
-  width: 20%;
-  padding: 0 0.7rem 0 0.7rem;
+  min-width: 20%;
 }
 
 .dashboard .section-profile .profile {
@@ -273,20 +304,17 @@ h2, h3, h4, h5 {
   min-height: 12rem;
   max-width: 12rem;
   max-height: 12rem;
-  border-radius: 50%;
-  border: .5rem solid #ffffff;
   /*background: #ffffff;*/
   z-index: 2;
 }
 
 .dashboard .section-profile .profile .about .user-dp img {
+  border: 0.5rem solid #ffffff;
+  z-index: inherit;
   min-height: inherit;
   min-width: inherit;
   max-height: inherit;
   max-width: inherit;
-  object-fit: contain;
-  border-radius: inherit;
-  z-index: inherit;
 }
 
 .dashboard .section-profile .profile .about .user {
@@ -349,10 +377,13 @@ h2, h3, h4, h5 {
 }
 
 .dashboard .section-profile .latest .content {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #fff;
   border: 0.1rem solid #abb8c1;
   border-radius: 0.5rem;
   padding: 2rem;
+  max-width: 45rem;
   overflow: hidden;
 }
 
@@ -362,7 +393,7 @@ h2, h3, h4, h5 {
   justify-content: flex-start;
   background-color: #fff;
   width: 70%;
-  height: 100%;
+  height: 110%;
   border-radius: .5rem;
 }
 
@@ -380,11 +411,15 @@ h2, h3, h4, h5 {
   font-size: 3rem;
   color: #abb8c1;
   background: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .dashboard .section-activity .activity-tab .tab-button-active {
   color: inherit;
-  background-color: rgba(171, 184, 193, 0.2);
+  /*background-color: rgba(171, 184, 193, 0.2);*/
 }
 
 
@@ -398,7 +433,11 @@ h2, h3, h4, h5 {
   border-radius: inherit;
   box-shadow: 0 -0.08rem 0.2rem  rgba(0, 0, 0, 0.2);
   /* TODO change to 100% after the data is ready so it could be more flexible*/
-  height: 60rem;
+  height: 100%;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .dashboard .section-activity #tab-riwayat, #tab-profile, #tab-teman {
@@ -408,17 +447,156 @@ h2, h3, h4, h5 {
 /* PROFILE */
 
 /* STATUS */
+#tab-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
-@media only screen and (max-width: 769px) {
+#tab-status #post-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  min-height: 25rem;
+  background-color: #F6F7F8;
+}
+
+#tab-status #post-status .user-dp {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5rem;
+  width: 10%;
+}
+
+#tab-status #post-status .user-dp img {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+}
+
+#tab-status #post-status .input-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding-right: 3rem;
+  width: 90%;
+}
+#tab-status #post-status .input-status #status-textarea {
+  border-radius: 1rem;
+  width: 100%;
+  padding: 2rem 2rem 2rem 2rem;
+  border: 0.1rem solid rgba(171, 184, 193, 0.5);
+}
+
+#tab-status #post-status .input-status button {
+  min-width: 15rem;
+  height: 5rem;
+  font-size: larger;
+  font-weight: bold;
+  color: #fff;
+  background-color: #698491;
+}
+
+#tab-status #timeline {
+  display: block;
+  min-width: 100%;
+  background-color: #fff;
+}
+
+#tab-status #timeline .status {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 15rem;
+  border-bottom: 0.1rem solid rgba(171, 184, 193, 0.5);
+}
+
+#tab-status #timeline .status .user-dp {
+  min-width: 10%;
+}
+
+#tab-status #timeline .status .user-dp img {
+  max-width: 8rem;
+  max-height: 8rem;
+  border: 0.2rem solid rgba(171, 184, 193, 0.5);
+  object-fit: contain;
+}
+
+#tab-status #timeline .status .status-content {
+  padding: 2rem 1rem 2rem 1rem;
+  min-width: 72%;
+  max-width: 72%;
+}
+
+#tab-status #timeline .status .status-content span {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  max-width: inherit;
+}
+
+#tab-status #timeline .status .status-content span p {
+  margin-left: 1rem;
+  color: rgba(103, 119, 113, 0.75);
+}
+
+#tab-status #timeline .status .right-status {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-width: 15%;
+}
+
+#tab-status #timeline .status .right-status .status-date {
+  color: rgba(103, 119, 113, 0.75);
+}
+
+#tab-status #timeline .status .right-status .trash {
+  font-size: 4rem;
+  color: rgba(103, 119, 113, 0.25);
+  background: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+
+#tab-status #timeline .status .right-status .trash:hover {
+  color: rgba(103, 119, 113, 0.6);
+}
+
+@media only screen and (max-width: 1700px) {
   .dashboard {
-    flex-direction: column;
+    padding: 0 3rem 0 3rem;
+    flex-direction: column-reverse;
   }
 
   .dashboard .section-profile {
+    margin-top: 5rem;
     width: 100%;
   }
 
   .dashboard .section-activity {
     width: 100%;
   }
+
+  #tab-status #post-status .user-dp {
+    display: none;
+  }
+
+  #tab-status #post-status .input-status {
+    padding: 0 3rem 0 3rem;
+    width: 100%;
+  }
+
+  .dashboard .section-profile .latest .content {
+    max-width: 100%;
+  }
+
 }

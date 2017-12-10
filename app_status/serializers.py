@@ -13,6 +13,7 @@ class StatuUserSerializer(auth_serializers.UserSerializer):
 class StatusSerializer(serializers.ModelSerializer):
 
     user = StatuUserSerializer(read_only=True)
+    created_at = serializers.DateTimeField(read_only=True, format='%b. %d, %Y, %H:%M')
 
     class Meta:
         model = Status

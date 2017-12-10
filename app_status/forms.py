@@ -16,7 +16,7 @@ class StatusPostForm(forms.Form):
 
     status_attrs = {
         'type': 'text',
-        'class': 'bsc-input form-textarea',
+        'class': 'form-textarea',
         'placeholder': 'What do you think?',
         'id': 'status-textarea',
         'max-length': 350,
@@ -28,7 +28,7 @@ class StatusPostForm(forms.Form):
 
     content = forms.CharField(label='',
                               max_length=350,
-                              required=True,
+                              required=False,
                               widget=forms.Textarea(attrs=status_attrs))
 
     class Meta:

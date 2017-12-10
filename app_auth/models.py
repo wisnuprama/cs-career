@@ -1,13 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User as DjangoUser
 
 
 # Create your models here.
 
-def user_directory_img_path(instance, filename):
-    return 'image/user/{0}/profile/{1}'.format(instance.username, filename)
-
-
-class User(models.Model):
+class User(DjangoUser):
     """
     Description:
     Model for user app
@@ -16,12 +13,11 @@ class User(models.Model):
 
     # basic user
     npm = models.CharField('NPM', primary_key=True, max_length=10, editable=False, unique=True)
-    username = models.CharField('Username', unique=True, max_length=128)
+    # username = models.CharField('Username', unique=True, max_length=128)
 
     # private
-    first_name = models.CharField('First Name', max_length=100, blank=True)
-    last_name = models.CharField('Last Name', max_length=100, blank=True)
-    email = models.EmailField('Email', blank=True, unique=True)
+    # full_name = models.CharField('Full Name', max_length=200, blank=True)
+    # email = models.EmailField('Email', blank=True, unique=True)
     role = models.CharField('Role', blank=True, max_length=10)
     angkatan = models.PositiveIntegerField('Angkatan')
     is_showing_score = models.BooleanField(default=False)
@@ -35,14 +31,8 @@ class User(models.Model):
     def __str__(self):
         return self.npm
 
-    def get_full_name(self):
-        return "%s %s" % (self.first_name, self.last_name)
-
     def get_npm(self):
         return self.npm
-
-    def get_username(self):
-        return self.username
 
     #
     # def get_token_linkedin(self):
