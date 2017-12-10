@@ -3,10 +3,10 @@
 body {
   margin: 0 0 25rem 0;
   padding: 13.5rem 0 20rem 0;
-  font-size: 18px;
+  font-size: 20px;
   font-family: 'Roboto', sans-serif;
   color: #333;
-  background: #E4EBF0;
+  background-color: #E4EBF0;
   height: 100%;
 }
 
@@ -17,7 +17,7 @@ footer {
   text-align: center;
   padding-top: 3rem;
   line-height: 15rem;
-  background: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 content {
@@ -32,6 +32,12 @@ textarea {
 button {
   border-radius: 50rem;
   border: none;
+  outline: none;
+}
+
+input {
+  border-radius: 50rem;
+  outline: none;
 }
 
 table, th, td {
@@ -53,88 +59,154 @@ h2, h3, h4, h5 {
 /* USE COMMENT TO SEPERATE BETWEEN APP */
 
 /* HOME */
-.navbar-static-top {
-  margin: 0 0 10rem 0;
-}
-
-/* TODO FIX NAVBAR RESPONSIVENESS */
-.navbar-default {
-  z-index: 1000;
+.header {
+  position: fixed;
+  top: 0;
+  height: 7.5rem;
+  min-height: 7.5rem;
+  width: 100%;
+  padding: 0rem 5rem 0rem 5rem;
+  background-color: #fff;
+  box-shadow: 0 0.1rem 0.9rem rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.1), 0 0.1rem 0.8rem rgba(0, 0, 0, 0.2);
-  height: 7.5rem;
-  padding: 0;
+  z-index: 1000;
   overflow: hidden;
 }
 
-.navbar-default container {
-  height: inherit;
-}
-
-.navbar-default .navbar-brand {
-  height: inherit;
-  width: auto;
-  padding: 0 2rem 0 2rem;
-  margin: 0 0 0 5rem;
-}
-
-.navbar-default .navbar-brand .logo {
+.header .navbar-base {
   display: flex;
-  background: #698491;
-  text-decoration: none;
-  padding-top: 2.2rem;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem 0 1.5rem 0;
+  height: inherit;
+  overflow: inherit;
 }
 
-.navbar-default .navbar-brand .logo .logo-text {
+.header .navbar-base .navbar-left {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
+.header .navbar-base .navbar-left .logo {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 16rem;
+  height: inherit;
+  background-color: #698491;
+  box-shadow: 0 0.1rem .9rem rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.header .navbar-base .navbar-left .logo .logo-text {
+  font-family: 'Lobster', cursive;
   font-size: 3.3rem;
   color: #e6ecf1;
   text-decoration: none;
 }
 
-.navbar-default .elem-header {
-  padding: 1.5rem 3rem 4rem 3rem;
+.header .navbar-base .navbar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
 }
 
-.navbar-default .btn-user {
+.header .navbar-base .navbar-right .search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 2rem 0 1rem;
+  height: 5rem;
+  width: 65%;
+  border: 0.1rem solid rgba(171, 184, 193, 0.5);
+  border-radius: 50rem;
+}
+
+.header .navbar-base .navbar-right .search-bar input {
+  padding: 0 2rem 0 2rem;
+  width: 90%;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.header .navbar-base .navbar-right .search-bar .fa-search {
+  font-size: 2.5rem;
+  /*
+  it is a hack but not really compatible across browser
+  only safari and chrome support webkit
+  */
+  -webkit-text-stroke: 2px white;
+  color: #698491;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header .navbar-base .navbar-right .search-bar .fa-search:active {
+  color: white;
+}
+
+.header .navbar-base .navbar-right .account {
+  position: relative;
+  width: 35%;
+  height: 7.5rem;
+  border-left: 0.1rem solid rgba(171, 184, 193, 0.5);
+  margin-left: 3rem;
+}
+
+.header .navbar-base .navbar-right .account .menu-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  width: inherit;
+}
+
+.header .navbar-base .navbar-right .account .menu-dropdown .menu-content {
+  display: block;
+  height: 20rem;
+  width: inherit;
+  background-color: #fff;
+}
+
+.header .navbar-base .navbar-right .account .menu-dropdown:hover .menu-content {
+  display: flex;
+}
+
+.header .navbar-base .navbar-right .account .menu-content .btn-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  padding: 0 0 0 5rem;
 }
 
-.navbar-default .btn-user img {
+.header .navbar-base .navbar-right .account .btn-user img {
   border-radius: 50%;
   object-fit: contain;
-  max-width: 33%;
+  height: 5rem;
+  width: 5rem;
 }
 
-.navbar-default .btn-login {
+.header .navbar-base .navbar-right .btn-login {
   font-weight: bold;
   padding: 1rem 2rem 1rem 2rem;
-  background: #698491;
-  color: #e6ecf1;
-}
-
-.navbar-default .dropdown {
-  margin: 0 5rem 0 0;
-  max-width: 15rem;
-}
-
-.navbar-default .dropdown #dropdown-menu {
-  z-index: 1100;
-  min-width: 250px;
-  padding: 14px 14px 0;
-  /*overflow:hidden;*/
-  background-color: rgba(255, 255, 255, .8);
-}
-
-.navbar-default .btn-login #submit {
-  padding: 0;
-  background: #cccccc;
+  background-color: #698491;
   color: #e6ecf1;
 }
 
@@ -155,21 +227,23 @@ h2, h3, h4, h5 {
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: space-around;
-  width: 45rem;
+  width: 20%;
   padding: 0 0.7rem 0 0.7rem;
 }
 
 .dashboard .section-profile .profile {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 45rem;
   border-radius: 0.5rem;
-  background: #fff;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .dashboard .section-profile .profile .img-cover {
   display: block;
   z-index: 1;
-  background: #698491;
+  background-color: #698491;
   height: 22rem;
   width: inherit;
   border-radius: inherit;
@@ -257,36 +331,94 @@ h2, h3, h4, h5 {
   font-size: larger;
   font-weight: bold;
   color: #fff;
-  background: #698491;
+  background-color: #698491;
 }
 
 .dashboard .section-profile .latest {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: #F6F7F8;
+  background-color: #F6F7F8;
   border-radius: 0.5rem;
   padding: 2rem;
 }
 
 .dashboard .section-profile .latest .head {
   font-weight: bold;
-  color: #698491
+  color: #698491;
 }
 
 .dashboard .section-profile .latest .content {
-  background: #fff;
+  background-color: #fff;
   border: 0.1rem solid #abb8c1;
   border-radius: 0.5rem;
   padding: 2rem;
   overflow: hidden;
 }
 
+.dashboard .section-activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #fff;
+  width: 70%;
+  height: 100%;
+  border-radius: .5rem;
+}
+
+.dashboard .section-activity .activity-tab {
+  display: flex;
+  justify-content: flex-start;
+  height: 7rem;
+  border-radius: inherit;
+}
+
+.dashboard .section-activity .activity-tab .tab-button {
+  width: 15rem;
+  margin: .5rem 1rem .5rem 1rem;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #abb8c1;
+  background: none;
+}
+
+.dashboard .section-activity .activity-tab .tab-button-active {
+  color: inherit;
+  background-color: rgba(171, 184, 193, 0.2);
+}
+
+
+.dashboard .section-activity .activity-tab .tab-button:hover {
+  color: inherit;
+  background-color: rgba(171, 184, 193, 0.2);
+}
+
+.dashboard .section-activity .tab-content {
+  display: flex;
+  border-radius: inherit;
+  box-shadow: 0 -0.08rem 0.2rem  rgba(0, 0, 0, 0.2);
+  /* TODO change to 100% after the data is ready so it could be more flexible*/
+  height: 60rem;
+}
+
+.dashboard .section-activity #tab-riwayat, #tab-profile, #tab-teman {
+  display: none;
+}
 
 /* PROFILE */
 
 /* STATUS */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 769px) {
+  .dashboard {
+    flex-direction: column;
+  }
 
+  .dashboard .section-profile {
+    width: 100%;
+  }
+
+  .dashboard .section-activity {
+    width: 100%;
+  }
 }

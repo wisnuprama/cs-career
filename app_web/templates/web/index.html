@@ -54,11 +54,19 @@
     </div>
     <!--TODO flex column: tab dan isi -->
     <!-- TODO implementasi dengan javascript untuk pindah tab -->
-    <div>
+    <div class="section-activity">
       <!-- TAB -->
-      <div></div>
+      <div class="activity-tab">
+        <!-- set javascript to change to tab -->
+        <button id="tab-button-status" class="tab-button tab-button-active" onclick="openTab(event, 'tab-status')"> Status </button>
+        <button id="tab-button-riwayat" class="tab-button" onclick="openTab(event, 'tab-riwayat')"> Riwayat </button>
+        <button id="tab-button-profile" class="tab-button" onclick="openTab(event, 'tab-profile')"> Profile </button>
+      </div>
       <!-- ISI DARI TIAP TAB -->
-      <div></div>
+      <div id="tab-status" class="tab-content">haha</div>
+      <div id="tab-riwayat" class="tab-content">hehe</div>
+      <div id="tab-profile" class="tab-content">hihi</div>
+      <div id="tab-teman" class="tab-content">hoho</div>
     </div>
     <!-- TODO ada space di kanan bisa diisi-->
     <div>
