@@ -12,7 +12,7 @@ def index(request):
     if 'user_login' in request.session:
         return HttpResponseRedirect(reverse('web:dashboard'))
 
-    html = 'web/auth/login.html'
+    html = 'auth/login.html'
     response = {
         'TITLE': strings.TITLE,
         'page_title': 'Welcome',
@@ -57,8 +57,12 @@ def index_dashboard(request):
     isi sesuai tab masing2.
     
     jika memang page yang kamu buat adalah page berbeda dari dashboard,
-    boleh buat sendiri seperti views biasa yang dikerjakan di lab karena page
-    berbeda.
+    boleh buat sendiri seperti views biasa yang dikerjakan di lab. hal itu karena page
+    berbeda dari dashboard.
+    
+    pembuatan fungsi seperti ini karena aktivitas user yang ditempatkan di
+    satu page sehingga hal yang diperlukan di render bersamaan dan masing-masing
+    aktifitas dipisahkan dalam tab-tab.
     
     contoh ada dibawah ini:
         - fungsi tidak mengembalikan apa2, dia hanya mengedit dictionary response

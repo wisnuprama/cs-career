@@ -1,0 +1,32 @@
+{% load static %}
+<!-- post status -->
+<div id="post-status">
+  <div class="user-dp">
+    <img src="{% static 'img/user_dummy.png' %}">
+  </div>
+  <form class="input-status">
+    {% csrf_token %}
+    {{ status_form }}
+    <button id="submit-post" type="submit" value="Submit"> Kirim </button>
+  </form>
+</div>
+<div id="timeline">
+  {% for status in query_of_status %}
+  <div id="status-{{status.id}}" class="status">
+    <div class="user-dp">
+      <img src="{% static 'img/user_dummy.png' %}">
+    </div>
+    <div class="status-content">
+              <span>
+                <h3>{{status.user.get_full_name}}</h3>
+                <p>@{{status.user.username}}</p>
+              </span>
+      <p>{{status.content}}</p>
+    </div>
+    <div class="right-status">
+      <span class="status-date">{{status.created_at|date:'M. d, Y, H:i'}}</span>
+      <button class="fa fa-trash-o trash" aria-hidden="true" onclick="deleteStatus('status-{{status.id}}')"></button>
+    </div>
+  </div>
+  {% endfor %}
+</div>

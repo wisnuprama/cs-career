@@ -92,6 +92,8 @@ p {
 
 .user-dp {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 1;
@@ -129,7 +131,11 @@ p {
 
 .header .navbar-base {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   justify-content: space-between;
   padding: 1.5rem 0 1.5rem 0;
   height: inherit;
@@ -138,13 +144,19 @@ p {
 
 .header .navbar-base .navbar-left {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   height: inherit;
 }
 
 .header .navbar-base .navbar-left .logo {
-  display: flex;
   position: fixed;
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   top: 0;
   width: 16rem;
   height: inherit;
@@ -165,7 +177,11 @@ p {
 
 .header .navbar-base .navbar-right {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 20%;
@@ -173,7 +189,11 @@ p {
 
 .header .navbar-base .navbar-right .search-bar {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   align-items: center;
   padding: 0 2rem 0 1rem;
   height: 5rem;
@@ -216,6 +236,8 @@ p {
 .header .navbar-base .navbar-right .account .menu-dropdown {
   position: relative;
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   height: 10%;
   margin: 0;
   padding-left: 3rem;
@@ -265,8 +287,14 @@ p {
 /* HOME LAYOUT */
 .dashboard {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 0.7rem 0 0.7rem;
 }
@@ -277,20 +305,29 @@ p {
 
 .dashboard .section-profile {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-wrap: column;
   flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
   align-content: space-around;
   min-width: 20%;
 }
 
 .dashboard .section-profile .profile {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   height: 45rem;
   border-radius: 0.5rem;
   background-color: #fff;
   overflow: hidden;
-  A
 }
 
 .dashboard .section-profile .profile .img-cover {
@@ -315,6 +352,8 @@ p {
 
 .dashboard .section-profile .profile .about {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   justify-content: flex-start;
   height: 10rem;
   padding: 0 1.5rem 0 1.5rem;
@@ -341,7 +380,11 @@ p {
 
 .dashboard .section-profile .profile .about .user {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   margin: 0 0 0 3rem;
 }
 
@@ -351,13 +394,19 @@ p {
 
 .dashboard .section-profile .profile .stats {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   justify-content: space-around;
   margin-top: 2.2rem;
 }
 
 .dashboard .section-profile .profile .stats .stat-content {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   align-items: center;
 }
 
@@ -373,6 +422,8 @@ p {
 
 .dashboard .section-profile .forum {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
 }
 
 .dashboard .section-profile .forum button {
@@ -386,7 +437,11 @@ p {
 
 .dashboard .section-profile .latest {
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   justify-content: space-around;
   background-color: #F6F7F8;
   border-radius: 0.5rem;
@@ -414,7 +469,7 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   background-color: #fff;
-  width: 70%;
+  min-width: 70%;
   height: 110%;
   border-radius: .5rem;
 }
@@ -461,15 +516,17 @@ p {
   transition: all 0.3s ease;
 }
 
-.dashboard .section-activity #tab-riwayat, #tab-profile, #tab-teman {
+.dashboard .section-activity #tab-riwayat, #tab-status, #tab-teman {
   display: none;
 }
 
 /* PROFILE */
+#tab-profile {
+  display: flex;
+}
 
 /* STATUS */
 #tab-status {
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
