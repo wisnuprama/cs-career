@@ -13,11 +13,8 @@ class User(DjangoUser):
 
     # basic user
     npm = models.CharField('NPM', primary_key=True, max_length=10, editable=False, unique=True)
-    # username = models.CharField('Username', unique=True, max_length=128)
 
     # private
-    # full_name = models.CharField('Full Name', max_length=200, blank=True)
-    # email = models.EmailField('Email', blank=True, unique=True)
     role = models.CharField('Role', blank=True, max_length=10)
     angkatan = models.PositiveIntegerField('Angkatan')
     is_showing_score = models.BooleanField(default=False)

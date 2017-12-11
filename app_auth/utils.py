@@ -13,10 +13,10 @@ SSO_GROUP_NAME = 'UserSSO'
 
 
 def get_permission_for_sso_user():
-    list_permission_name = ['Can add user', 'Can change user', 'Can delete user', 'Can add friendship',
-                            'Can change friendship', 'Can delete friendship', 'Can add expertise',
-                            'Can change expertise', 'Can delete expertise', 'Can add comment', 'Can change comment',
-                            'Can delete comment', 'Can add status', 'Can change status', 'Can delete status']
+    list_permission_name = ['Can add friendship', 'Can change friendship', 'Can delete friendship',
+                            'Can add expertise', 'Can change expertise', 'Can delete expertise',
+                            'Can add comment', 'Can change comment', 'Can delete comment',
+                            'Can add status', 'Can change status', 'Can delete status']
 
     result = []
     for name in list_permission_name:
