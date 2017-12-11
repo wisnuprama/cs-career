@@ -19,16 +19,23 @@
           <div id="btn-user">
             <img src="{% static 'img/user_dummy.png' %}">
           </div>
-          <div id="menu-content" class="menu-content">
+          <div id="menu-account" class="menu-content">
             <span class="arrow-up"></span>
             <div class="square">
-
+              <!--logged in-->
+              <div id="content-about" class="content">
+                <h4 class="username"> @{{ user_login.username }} </h4>
+                <span class="name"> {{ user_login.full_name }} </span>
+              </div>
+              <!--TODO ADD EDIT PROFILE URL-->
+              <a class="content" href="{% url 'web:dashboard' %}"> Edit Profile </a>
+              <a class="content" href="{% url 'auth:logout' %}"> Logout </a>
             </div>
           </div>
         </div>
       </div>
       {% else %}
-      <div class="account">
+      <div class="account push-right">
         <div class="menu-dropdown">
           <button id="btn-login"> Masuk </button>
         </div>

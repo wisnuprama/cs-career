@@ -1,17 +1,18 @@
 from django.core import paginator
-from rest_framework import status, pagination, generics
-from django.http import HttpResponseBadRequest, QueryDict
+from django.http import QueryDict
 from django.shortcuts import reverse
+from rest_framework import pagination, generics
+
+import app_auth.utils as auth_utils
 # -----
 from app_status import utils, forms, serializers, models
-from core.abstract_view import response, RESPONSE_ATTRS, AUTH_TYPE
-import app_auth.utils as auth_utils
+from core.abstract import views as abstractviews
 
 
 # Create your views here.
 def index(request, data):
     npm = request.session['user_login']['npm']
-    user = auth_utils.get_user_or_create(npm=npm)
+    user = auth_utils.get_or_create_user(npm=npm)
     data['number_of_status'] = utils.get_number_of_status(user=user)
     data['status_form'] = forms.StatusPostForm
 
@@ -57,7 +58,7 @@ def get(request):
 
         return result
 
-    return response(request, method='GET', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
+    return abstractviews.response(request, method='GET', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def post(request):
@@ -75,7 +76,7 @@ def post(request):
 
         return result
 
-    return response(request, method='POST', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
+    return abstractviews.response(request, method='POST', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def delete(request):
@@ -96,7 +97,7 @@ def delete(request):
         # status code for delete:
         #   200 if the response include the entity
         #   204 if the response doesnt include the entity
-    return response(request, method='DELETE', auth_type=AUTH_TYPE['LOGIN'], callback=callback)
+    return abstractviews.response(request, method='DELETE', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def put(request, *args, **kwargs):
@@ -109,6 +110,7 @@ def put(request, *args, **kwargs):
     return
 
 
+# PAGINATION USING DJANGO REST FRAMEWORK
 class StandardResultsSetPagination(pagination.PageNumberPagination):
     page_size = 100
     page_size_query_param = 'page_size'

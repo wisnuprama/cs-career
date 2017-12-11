@@ -2,47 +2,37 @@
 {% load static %}
 {% block content %}
 <section>
-  <!-- TODO flex row -->
   <div id="dashboard" class="dashboard">
-    <!--TODO flex column: profile forum status terakhir -->
     <div class="section-profile">
-      <!-- TODO flex column: profile -->
       <div class="profile bottom-space">
-        <!-- TODO cover -->
-        <div class="img-cover"></div>
-        <!-- TODO flex row: foto dan nama username -->
+        <span class="img-cover"></span>
         <div class="about">
           <div class="user-dp">
-            <!--TODO PHOTO STILL MISSING-->
             <img src="{% static 'img/user_dummy.png' %}">
           </div>
           <div class="user">
-            <h3 id="username"> @{{ user_login.username }} </h3>
-            <span id="name"> {{ user_login.full_name }} </span>
+            <h3 class="username"> @{{ user_login.username }} </h3>
+            <span class="name"> {{ user_login.full_name }} </span>
           </div>
         </div>
-        <!-- TODO flex row: statistik status friends -->
         <div class="stats">
           <div id="stats-status" class="stat-content">
             <h4 class="title"> Status </h4>
             <span id="stat-status-number" class="content"> {{ number_of_status }} </span>
           </div>
-          <div id="stats-friends" class="stat-content">
+          <a id="stats-friends" class="stat-content" href="{% url 'web:dashboard' %}">
             <h4 class="title"> Friends </h4>
             <span class="content"> {{ number_of_friend }} </span>
-          </div>
+          </a>
         </div>
       </div>
-      <!-- TODO tombol lihat forum -->
       <div class="forum bottom-space">
         <!--button-->
         <button href=""> Lihat Forum </button>
       </div>
-      <!-- TODO flex column: status terakhir -->
       <div class="latest bottom-space">
         {% if latest_status %}
         <h4 class="head"> Status Terakhir </h4>
-        <!-- TODO implement status -->
         <div class="content">
           <!--content-->
           <p id="latest-status-content">{{ latest_status.content }}</p>
@@ -52,30 +42,27 @@
         {% endif %}
       </div>
     </div>
-    <!--TODO flex column: tab dan isi -->
-    <!-- TODO implementasi dengan javascript untuk pindah tab -->
     <div class="section-activity">
       <!-- TAB -->
       <div class="activity-tab">
-        <!-- set javascript to change to tab -->
-        <button id="tab-button-status" class="tab-button tab-button-active" onclick="openTab(event, 'tab-status')"> Status </button>
+        <button id="tab-button-status" class="tab-button" onclick="openTab(event, 'tab-status')"> Status </button>
         <button id="tab-button-riwayat" class="tab-button" onclick="openTab(event, 'tab-riwayat')"> Riwayat </button>
-        <button id="tab-button-profile" class="tab-button" onclick="openTab(event, 'tab-profile')"> Profile </button>
+        <button id="tab-button-profile" class="tab-button tab-button-active" onclick="openTab(event, 'tab-profile')"> Profile </button>
       </div>
-      <!-- ISI DARI TIAP TAB -->
+      <!-- TODO ISI DARI TIAP TAB -->
       <div id="tab-status" class="tab-content">
         {% include 'status/timeline.html' %}
       </div>
-      <div id="tab-riwayat" class="tab-content">hehe</div>
-      <div id="tab-profile" class="tab-content">hihi</div>
-      <div id="tab-teman" class="tab-content">hoho</div>
-    </div>
-    <!-- TODO ada space di kanan bisa diisi-->
-    <div>
-
+      <div id="tab-riwayat" class="tab-content">
+        hehe
+      </div>
+      <div id="tab-profile" class="tab-content">
+        hihi
+      </div>
+      <div id="tab-teman" class="tab-content">
+        hoho
+      </div>
     </div>
   </div>
-  <a href="{% url 'api-status:get-status' %}">test api status</a>
-  <a href="{% url 'api-service:get-data-mahasiswa' %}">test api service</a>
 </section>
 {% endblock %}

@@ -22,7 +22,7 @@ const canLoadPage = () => {
 };
 
 const addStatusToTimeline = (status, to) => {
-  html = '<div class="status">\n' +
+  html = '<div id="status-' + status.id + '" class="status">\n' +
       '     <div class="user-dp">\n' +
       '       <img src="/static/img/user_dummy.png">\n' +
       '     </div>\n' +
@@ -35,7 +35,8 @@ const addStatusToTimeline = (status, to) => {
       '      </div>\n' +
       '      <div class="right-status">' +
       '        <span class="status-date">\n' + status.created_at + '</span>\n' +
-      '        <button class="fa fa-trash-o trash" aria-hidden="true"></button>\n' +
+      '       <button class="fa fa-trash-o trash" aria-hidden="true"' +
+      '         onclick="deleteStatus(\'status-' + status.id +'\')"></button>' +
       '      </div>\n' +
       ' </div>';
 
@@ -162,10 +163,6 @@ $(document).ready(() => {
     });
 
     event.preventDefault();
-  });
-
-  $('#btn-user').on('active', (event) =>{
-
   });
 
 });

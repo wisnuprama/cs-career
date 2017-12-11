@@ -99,15 +99,18 @@ p {
   flex-shrink: 1;
 }
 
+.font-lobster {
+  font-family: 'Lobster', cursive;
+}
+
 .user-dp img {
   border-radius: 50%;
   object-fit: contain;
 }
 
-.font-lobster {
-  font-family: 'Lobster', cursive;
+.username {
+  font-weight: bold;
 }
-
 /* USE COMMENT TO SEPERATE BETWEEN APP */
 
 /* HOME */
@@ -126,7 +129,6 @@ p {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   z-index: 1000;
-  overflow: hidden;
 }
 
 .header .navbar-base {
@@ -230,7 +232,28 @@ p {
   position: relative;
   min-width: 35%;
   border-left: 0.1rem solid rgba(171, 184, 193, 0.5);
-  margin-left: 3rem;
+  padding: 0;
+  margin-left: 2rem;
+}
+
+
+.header .navbar-base .navbar-right .account #btn-user img {
+  border-radius: 50%;
+  object-fit: contain;
+  height: 5rem;
+  width: 5rem;
+}
+
+.header .navbar-base .navbar-right .push-right {
+  margin-left: auto;
+}
+
+.header .navbar-base .navbar-right .account #btn-login {
+  position: relative;
+  font-weight: bold;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: #698491;
+  color: #e6ecf1;
 }
 
 .header .navbar-base .navbar-right .account .menu-dropdown {
@@ -240,49 +263,67 @@ p {
   display: -ms-flex;
   height: 10%;
   margin: 0;
-  padding-left: 3rem;
   width: inherit;
+  padding-left: 2rem;
 }
 
-.header .navbar-base .navbar-right .account #btn-user img {
-  border-radius: 50%;
-  object-fit: contain;
-  height: 4.5rem;
-  width: 4.5rem;
+.header .navbar-base .navbar-right .account .menu-dropdown:hover #menu-account {
+  display: block;
 }
 
-.header .navbar-base .navbar-right .account #btn-login {
-  font-weight: bold;
+.header .navbar-base .navbar-right .account .menu-content {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30rem;
+  width: 20rem;
+  padding: 4.5rem 0 0 0;
+}
+
+.header .navbar-base .navbar-right .account .menu-content .arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 2rem solid #fff;
+  margin-left: 0.5rem;
+}
+
+.header .navbar-base .navbar-right .account .menu-content .square {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 21.5rem;
+  width: 100%;
+  top: 9rem;
+  right: 10rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 .3rem 0.9rem -.3rem rgba(171, 184, 193, 1);
+  background-color: #fff;
+}
+
+.header .navbar-base .navbar-right .account .menu-content .square .content {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 7rem;
+  color: #677785;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
   padding: 1rem 2rem 1rem 2rem;
-  background-color: #698491;
-  color: #e6ecf1;
+  border-bottom: 0.1rem solid rgba(171, 184, 193, 0.3);
 }
 
-/*.header .navbar-base .navbar-right .account .menu-content {*/
-  /*position: relative;*/
-  /*display: none;*/
-  /*flex-direction: column;*/
-  /*justify-content: flex-start;*/
-  /*align-items: center;*/
-  /*height: 30rem;*/
-  /*width: 20rem;*/
-  /*padding: 1rem 1rem 0 0;*/
-/*}*/
-
-/*.header .navbar-base .navbar-right .account .menu-content .arrow-up {*/
-  /*width: 0;*/
-  /*height: 0;*/
-  /*border-left: 2rem solid transparent;*/
-  /*border-right: 2rem solid transparent;*/
-  /*border-bottom: 2rem solid #fff;;*/
-/*}*/
-
-/*.header .navbar-base .navbar-right .account .menu-content .square {*/
-  /*height: 100%;*/
-  /*width: 100%;*/
-  /*background-color: #fff;*/
-/*}*/
-
+.square #content-about {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.65rem;
+  cursor: default;
+  height: 100%;
+}
 
 /* HOME LAYOUT */
 .dashboard {
@@ -309,7 +350,7 @@ p {
   display: -ms-flex;
   flex-direction: column;
   -ms-flex-direction: column;
-  -webkit-flex-wrap: column;
+  -webkit-flex-direction: column;
   flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
@@ -388,16 +429,22 @@ p {
   margin: 0 0 0 3rem;
 }
 
-.dashboard .section-profile .profile .about .user #username {
-  font-weight: bold;
-}
-
 .dashboard .section-profile .profile .stats {
   display: flex;
   display: -webkit-flex;
   display: -ms-flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 2.2rem;
+  height: 11rem;
+}
+
+.dashboard .section-profile .profile .stats #stats-friends {
+  text-decoration: none;
+  outline: none;
+}
+
+.dashboard .section-profile .profile .stats #stats-friends:hover {
+  background-color: rgba(171, 184, 193, 0.2);
 }
 
 .dashboard .section-profile .profile .stats .stat-content {
@@ -408,6 +455,7 @@ p {
   -ms-flex-direction: column;
   -webkit-flex-direction: column;
   align-items: center;
+  width: 50%;
 }
 
 .dashboard .section-profile .profile .stats .stat-content .title {
@@ -470,7 +518,7 @@ p {
   justify-content: flex-start;
   background-color: #fff;
   min-width: 70%;
-  height: 110%;
+  min-height: 110%;
   border-radius: .5rem;
 }
 
@@ -522,7 +570,7 @@ p {
 
 /* PROFILE */
 #tab-profile {
-  display: flex;
+  display: block;
 }
 
 /* STATUS */
@@ -659,12 +707,17 @@ p {
     padding: 0;
   }
 
-  .header .navbar-base .navbar-right .account {
-    margin: 0;
+  .header .navbar-base .navbar-right .search-bar {
+    display: none;
   }
 
   .header .navbar-base .navbar-right .account .menu-dropdown {
     padding-left: 2rem;
+  }
+
+  .header .navbar-base .navbar-right .account .menu-content .square {
+    width: 180%;
+    right: 15rem;
   }
 
   .dashboard {
@@ -687,8 +740,9 @@ p {
     display: none;
   }
 
-  .header .navbar-base .navbar-right .search-bar {
-    display: none;
+
+  .dashboard .section-activity {
+    min-width: 100%;
   }
 
   .dashboard .section-activity .activity-tab {
@@ -699,6 +753,10 @@ p {
 
   .dashboard .section-activity .activity-tab::-webkit-scrollbar {
     display:none
+  }
+
+  .dashboard .section-activity .tab-content {
+    min-width: 100%;
   }
 
   #tab-status #timeline .status {
@@ -721,6 +779,29 @@ p {
 
   .dashboard .section-profile .latest .content {
     max-width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .header .navbar-base .navbar-right .account {
+    margin: 0;
+    right: auto;
+  }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+  .header .navbar-base .navbar-right .account {
+    margin: 0;
+    right: 2rem;
+  }
+
+  .header .navbar-base .navbar-right .account .menu-content .square {
+    width: 130%;
+    right: 15rem;
   }
 
 }

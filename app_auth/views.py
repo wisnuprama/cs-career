@@ -28,7 +28,7 @@ def auth_login(request):
                 role = verified_user['role']
 
                 user_data = CSUIHelper.get_user_data(access_token=access_token, id=npm)
-                user = AuthUtils.get_user_or_create(npm=npm,
+                user = AuthUtils.get_or_create_user(npm=npm,
                                                     username=__USERNAME__,
                                                     role=role,
                                                     angkatan=user_data['program'][0]['angkatan']

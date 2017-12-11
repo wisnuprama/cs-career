@@ -48,7 +48,7 @@ def check_user_existence(**kwargs):
     return bool(User.objects.filter(**kwargs))
 
 
-def get_user_or_create(npm, **kwargs):
+def get_or_create_user(npm, **kwargs):
     '''
     Get user by NPM if user has existed, otherwise create new one and return it.
     The **kwargs argument is only for create, for get only using npm.

@@ -44,7 +44,7 @@ def response(request, method, auth_type, callback, status_code=status.HTTP_200_O
         if auth_type == 0:
             if 'user_login' in request.session:
                 npm = request.session['user_login']['npm']
-                user = auth_utils.get_user_or_create(npm=npm)
+                user = auth_utils.get_or_create_user(npm=npm)
                 result = callback(user)
             #
             # using session to identified user
