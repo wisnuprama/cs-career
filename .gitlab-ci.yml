@@ -1,5 +1,5 @@
 stages:
-  - test
+#  - test
   - deploy
 
 UnitTest:
@@ -17,6 +17,7 @@ UnitTest:
     - wget https://chromedriver.storage.googleapis.com/2.32/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip
     - python manage.py collectstatic --no-input
+    - echo "" | python manage.py shell
     - python manage.py runserver 8000 &
   when: on_success
   script:
