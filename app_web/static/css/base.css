@@ -71,6 +71,7 @@ input {
   border-radius: 50rem;
   outline: none;
   border: 0.1rem solid rgba(171, 184, 193, 0.5);
+  padding: 0 1rem 0 1rem;
 }
 
 table, th, td {
@@ -571,6 +572,10 @@ form {
   border-radius: .5rem;
 }
 
+.dashboard #section-activity-2, #section-activity-3 {
+  display: none;
+}
+
 .dashboard .section-activity .activity-tab {
   display: flex;
   justify-content: flex-start;
@@ -613,13 +618,87 @@ form {
   transition: all 0.3s ease;
 }
 
-.dashboard .section-activity #tab-riwayat, #tab-status, #tab-friend {
+.dashboard .section-activity #tab-riwayat, #tab-status, #tab-friend, #tab-edit-profile {
   display: none;
 }
 
 /* PROFILE */
 #tab-profile {
   display: block;
+}
+
+.flex-row{
+  padding: 1rem 3rem 1rem 3rem;
+  margin: 0;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.flex-warning {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  color: #af515d;
+}
+
+.flex-item-1{
+  flex-basis: 10% auto;
+  margin-right: 2rem;
+}
+
+.flex-item-2{
+  flex-basis: 40% auto;
+}
+
+.flex-item-3{
+  flex-basis: 30% auto;
+}
+
+#tab-button-edit-profile {
+  background-color: #fff;
+  color: #658190;
+  border: 0.1rem solid #658190;
+  border-radius: 50rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.flex-profile-content {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: baseline;
+  justify-content: flex-start;
+  padding: 0 3rem 0 3rem;
+}
+
+.flex-profile-content h3 {
+  width: 8rem;
+  margin-right: 5rem;
+}
+
+.flex-profile-content .group-keahlian {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-profile-content .group-keahlian .keahlian {
+  margin: 0 1rem 0 1rem;
+}
+
+#tab-friend {
+  padding: 5rem;
+}
+
+#tab-edit-profile {
+  height: 100rem;
+  width: 100rem;
 }
 
 /* RIWAYAT */
@@ -872,7 +951,11 @@ form {
     right: auto;
   }
 
-  table, thead, tbody, th, td, tr {
+  #table-riwayat {
+    display: block;
+  }
+
+  #table-riwayat thead, tbody, th, td, tr {
     display: block;
   }
 
@@ -902,10 +985,10 @@ form {
     white-space: nowrap;
   }
 
-  td:nth-of-type(1):before { content: "Mata Kuliah"; }
-  td:nth-of-type(2):before { content: "SKS"; }
-  td:nth-of-type(3):before { content: "Nilai"; }
-  td:nth-of-type(4):before { content: "Kode"; }
+  /*td:nth-of-type(1):before { content: "Mata Kuliah"; }*/
+  /*td:nth-of-type(2):before { content: "SKS"; }*/
+  /*td:nth-of-type(3):before { content: "Nilai"; }*/
+  /*td:nth-of-type(4):before { content: "Kode"; }*/
 
   #tab-riwayat .content {
     flex: 1 1 0;

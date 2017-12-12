@@ -81,6 +81,8 @@ def get_or_create_user(npm, **kwargs):
 def get_user_queryset(**kwargs):
     return User.objects.filter(**kwargs)
 
+def get_except_user_queryset(**kwargs):
+    return User.objects.exclude(**kwargs)
 
 def check_user_session_existence(request):
     print('haha')
@@ -101,3 +103,4 @@ def get_user_session(request):
 def serialize_user(user):
     from core.utils import serialize_instance
     return serialize_instance(UserSerializer, user)
+

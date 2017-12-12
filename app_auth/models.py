@@ -20,7 +20,8 @@ class User(DjangoUser):
     is_showing_score = models.BooleanField(default=False)
 
     # linkedin
-    token_linkedin = models.CharField(blank=True, max_length=1000)
+    picture_url = models.CharField(blank=True, max_length=300)
+    id_linkedin = models.CharField(blank=True, max_length=20)
     link_linkedin = models.CharField(blank=True, max_length=100)
 
     lastseen_at = models.DateTimeField('Last Seen at', auto_now=True, editable=False)
@@ -28,6 +29,10 @@ class User(DjangoUser):
 
     def __str__(self):
         return self.npm
+
+    def set_user_data(self, **kwargs):
+        for key,value in kwargs:
+            setattr(self, key, value)
 
     def get_npm(self):
         return self.npm

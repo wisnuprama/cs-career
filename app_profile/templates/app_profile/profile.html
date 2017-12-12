@@ -1,48 +1,55 @@
 {% load static %}
 
 <div id="profile">
-	<!-- if belom nyambungin ke linkedin keluar ini -->
-	<!-- {% for req in request %} -->
+  <!-- if belom nyambungin ke linkedin keluar ini -->
+  <!-- {% for req in request %} -->
 
-	<!-- {% endfor %} -->
-	<div class="warning-profile">
-		 <div class="row">
-		 	<div class="col-sm-3"><img src="{% static 'img/red_alert.png' %}"></div>
-	    	<div class="col-sm-4"><p> Silakan isi profil terlebih dahulu. </p></div>
-	    	<div class="col-sm-4"><button id="edit-profile" type="edit" href="edit_profile.html"> Edit Profil </button></div>
-	 	</div>
-	 	<table class="table borderless">
-	 		<tbody>
-	 			<tr>
-	 				<td>Nama</td>
-	 				<td>{{ nama }}</td>
-	 			</tr>
+  <!-- {% endfor %} -->
+  <!--todo: silakan isi profil-->
+  <div class="flex-row">
+    <!--tanda seru-->
+    <div class="flex-warning">
+      <div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+      <!--tulisan-->
+      <div class="flex-item-2"><p> Silakan isi profil dahulu. </p></div>
+    </div>
+    <!--button-->
+    <div class="flex-item-3">
+      <button id="tab-button-edit-profile"> Edit Profil </button>
+    </div>
+  </div>
+  <!--todo: isi profile user-->
+  <div class="flex-column">
+    <!--nama-->
+    <span class="flex-profile-content">
+			<h3>Nama</h3>
+			<p>{{ user_login.full_name }}</p>
+		</span>
+    <!--npm-->
+    <span class="flex-profile-content">
+			<h3>NPM</h3>
+			<p>{{ user_login.npm }}</p>
+		</span>
+    <!--keahlian-->
+    <span class="flex-profile-content">
+			<h3>Keahlian</h3>
+			<div class="keahlian">
+				{% for expertise in user_login.expertise %}
+				<p>{{expertise.expertise}} ({{expertise.level}}) </p>
+				{% endfor %}
+			</div>
+		</span>
+    <!--email-->
+    <span class="flex-profile-content">
+			<h3>Email</h3>
+			<p>{{ user_login.email }}</p>
+		</span>
+    <!--account-->
+    <span class="flex-profile-content">
+			<h3>Account</h3>
+			<p>{{ user_login.link_linkedin }}</p>
+		</span>
 
-	 			<tr>
-	 				<td>NPM</td>
-	 				<td>{{ npm }}</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>Keahlian</td>
-	 				<td>
-	 					{% for ahli in keahlian %}
-	 						<li>ahli</li>
-	 					{% endfor %}
-	 				</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>Email</td>
-	 				<td>{{ email }}</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>LinkedIn</td>
-	 				<td>{{ account }}</td>
-	 			</tr>
-	 		</tbody>
-	 	</table>
-	</div>
+  </div>
 </div>
 

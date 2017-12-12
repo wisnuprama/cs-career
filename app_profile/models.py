@@ -18,17 +18,17 @@ class Expertise(models.Model):
     LEGEND = 'Legend'
 
     LEVEL_CHOICE = (
-        (BEGINNER, 1),
-        (INTERMEDIATE, 2),
-        (ADVANCE, 3),
-        (EXPERT, 4),
-        (LEGEND, 5),
+        (BEGINNER, BEGINNER),
+        (INTERMEDIATE, INTERMEDIATE),
+        (ADVANCE, ADVANCE),
+        (EXPERT, EXPERT),
+        (LEGEND, LEGEND),
     )
 
-    user = models.ForeignKey(to=User)
+    user = models.ForeignKey(to=User, related_name='expert')
 
     expertise = models.CharField('Expertise', max_length=45)
-    level = models.PositiveIntegerField('Level', choices=LEVEL_CHOICE)
+    level = models.CharField('Level', choices=LEVEL_CHOICE, max_length=12)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, editable=False)

@@ -8,7 +8,11 @@
         <span class="img-cover"></span>
         <div class="about">
           <div class="user-dp">
+            {% if user_login.picture_url %}
+            <img src="{{ user_login.picture_url }}">
+            {% else %}
             <img src="{% static 'img/user_dummy.png' %}">
+            {% endif %}
           </div>
           <div class="user">
             <h3 class="username"> @{{ user_login.username }} </h3>
@@ -42,7 +46,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="section-activity">
+    <div id="section-activity-1" class="section-activity">
       <!-- TAB -->
       <div id="activity-tab" class="activity-tab">
         <button id="tab-button-status" class="tab-button" onclick="openTab(event, 'tab-status')"> Status </button>
@@ -59,26 +63,11 @@
       <div id="tab-profile" class="tab-content">
         {% include 'app_profile/profile.html' %}
       </div>
-    </div>
-    <!-- EDIT PROFILE -->
-    <div class="section-activity">
-      <!-- TAB -->
-      <div>
-        <button id="tab-button-edit-profile" class="tab-button"> Edit Profile </button>
+      <div id="tab-friend" class="tab-content">
+        {% include 'friend/friendtable.html' %}
       </div>
-      <!-- EDIT -->
-      <div id="tab-edit-profile">
+      <div id="tab-edit-profile" class="tab-content">
         {% include 'app_profile/edit_profile.html' %}
-      </div>
-    </div>
-    <div class="section-activity">
-      <!-- TAB -->
-      <div>
-        <button id="tab-button-friend" class="tab-button"> Teman </button>
-      </div>
-      <!-- EDIT -->
-      <div id="tab-friend">
-        <!--TODO INCLUDE FRIEND PAGE-->
       </div>
     </div>
   </div>

@@ -2,7 +2,11 @@
 <!-- post status -->
 <div id="post-status">
   <div class="user-dp">
+    {% if user_login.picture_url %}
+    <img src="{{ user_login.picture_url }}">
+    {% else %}
     <img src="{% static 'img/user_dummy.png' %}">
+    {% endif %}
   </div>
   <form class="input-status">
     {% csrf_token %}

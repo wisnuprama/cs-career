@@ -3,16 +3,9 @@ from .models import Status
 import app_auth.serializers as auth_serializers
 
 
-class StatuUserSerializer(auth_serializers.UserSerializer):
-
-    class Meta:
-        model = auth_serializers.User
-        fields = ('username', 'first_name')
-
-
 class StatusSerializer(serializers.ModelSerializer):
 
-    user = StatuUserSerializer(read_only=True)
+    user = auth_serializers.UserSerializer(read_only=True)
     created_at = serializers.DateTimeField(read_only=True, format='%b. %d, %Y, %H:%M')
 
     class Meta:
