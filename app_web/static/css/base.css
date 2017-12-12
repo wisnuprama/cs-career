@@ -685,6 +685,11 @@ form {
   margin: 0 1rem 0 1rem;
 }
 
+#tab-edit-profile {
+  height: 100rem;
+  width: 100rem;
+}
+
 /* RIWAYAT */
 #tab-riwayat .content {
   display: flex;
