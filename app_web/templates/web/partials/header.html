@@ -19,7 +19,11 @@
         <div class="menu-dropdown">
           {% if user_login %}
           <div id="btn-user">
-            <img src="{% static 'img/user_dummy.png' %}">
+            {% if user_login.picture_url %}
+              <img src="{{ user_login.picture_url }}">
+            {% else %}
+              <img src="{% static 'img/user_dummy.png' %}">
+            {% endif %}
           </div>
           <div id="menu-account" class="menu-content">
             <span class="arrow-up"></span>

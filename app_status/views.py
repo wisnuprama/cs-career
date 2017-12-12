@@ -97,7 +97,8 @@ def delete(request):
         # status code for delete:
         #   200 if the response include the entity
         #   204 if the response doesnt include the entity
-    return abstractviews.response(request, method='DELETE', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
+    return abstractviews.response(request, method='DELETE',
+                                  auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
 def put(request, *args, **kwargs):

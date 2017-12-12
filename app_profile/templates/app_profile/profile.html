@@ -1,77 +1,55 @@
 {% load static %}
 
 <div id="profile">
-	<!-- if belom nyambungin ke linkedin keluar ini -->
-	<!-- {% for req in request %} -->
+  <!-- if belom nyambungin ke linkedin keluar ini -->
+  <!-- {% for req in request %} -->
 
-	<!-- {% endfor %} -->
-	<!--todo: silakan isi profil-->
-	<div class="flex-row">
-		<!--tanda seru-->
-		<div class="flex-warning">
-			<div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
-			<!--tulisan-->
-			<div class="flex-item-2"><p> Silakan isi profil dahulu. </p></div>
-		</div>
-		<!--button-->
-		<div class="flex-item-3"><button> Edit Profil </button></div>
-	</div>
-	<!--todo: isi profile user-->
-	<div class="flex-column">
-		<!--nama-->
-		<span class="flex-profile-content">
-			<h3>
-				Nama
-			</h3>
-			<p> heheheheh
-				{{ user_login.full_name }}
-			</p>
+  <!-- {% endfor %} -->
+  <!--todo: silakan isi profil-->
+  <div class="flex-row">
+    <!--tanda seru-->
+    <div class="flex-warning">
+      <div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+      <!--tulisan-->
+      <div class="flex-item-2"><p> Silakan isi profil dahulu. </p></div>
+    </div>
+    <!--button-->
+    <div class="flex-item-3">
+      <button id="tab-button-edit-profile"> Edit Profil </button>
+    </div>
+  </div>
+  <!--todo: isi profile user-->
+  <div class="flex-column">
+    <!--nama-->
+    <span class="flex-profile-content">
+			<h3>Nama</h3>
+			<p>{{ user_login.full_name }}</p>
 		</span>
-		<!--npm-->
-		<span class="flex-profile-content">
-			<h3>
-				NPM
-			</h3>
-			<p>
-				{{ user_login.npm }}
-			</p>
+    <!--npm-->
+    <span class="flex-profile-content">
+			<h3>NPM</h3>
+			<p>{{ user_login.npm }}</p>
 		</span>
-		<!--keahlian-->
-		<span class="flex-profile-content">
-			<h3>
-				Keahlian
-			</h3>
+    <!--keahlian-->
+    <span class="flex-profile-content">
+			<h3>Keahlian</h3>
 			<div class="keahlian">
-				<p>
-					dummy1
-				</p>
-				<p>
-					dummy2
-				</p>
-				<p>
-					dummy3
-				</p>
+				{% for expertise in user_login.expertise %}
+				<p>{{expertise.expertise}} ({{expertise.level}}) </p>
+				{% endfor %}
 			</div>
 		</span>
-		<!--email-->
-		<span class="flex-profile-content">
-			<h3>
-				Email
-			</h3>
-			<p>
-				{{ user_login.email }}
-			</p>
+    <!--email-->
+    <span class="flex-profile-content">
+			<h3>Email</h3>
+			<p>{{ user_login.email }}</p>
 		</span>
-		<!--account-->
-		<span class="flex-profile-content">
-			<h3>
-				Account
-			</h3>
-			<p>
-				{{ user_login.link_linkedin }}
-			</p>
+    <!--account-->
+    <span class="flex-profile-content">
+			<h3>Account</h3>
+			<p>{{ user_login.link_linkedin }}</p>
 		</span>
 
-	</div>
+  </div>
 </div>
 
