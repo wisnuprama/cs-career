@@ -1,7 +1,7 @@
 from app_profile import utils as profile_utils
-from django.shortcuts import render
+from django.http import QueryDict
 from core.abstract import views as abstractviews
-
+from app_auth import utils as auth_utils
 
 # Create your views here.
 response = {}
@@ -17,17 +17,34 @@ def put_profile(request):
 
     def callback(user):
 
-        print(request.body['data'])
+        PUT = QueryDict(request.body)
+        print(PUT)
+        print('first_name' in PUT)
 
-        result = {
-            'username': user.username,
-            
-        }
-        return result
+        if 'first_name' in PUT:
+            user.first_name = PUT.get('first_name')
 
-        # status code for delete:
-        #   200 if the response include the entity
-        #   204 if the response doesnt include the entity
+        if 'last_name' in PUT:
+            user.last_name = PUT.get('last_name')
+
+        if 'email' in PUT:
+            user.email = PUT.get('email')
+
+        if 'picture_url' in PUT:
+            user.picture_url = PUT.get('picture_url')
+
+        if 'id_linkedin' in PUT:
+            user.id_linkedin = PUT.get('id_linkedin')
+
+        if 'link_linkedin' in PUT:
+            user.link_linkedin = PUT.get('link_linkedin')
+
+        user.save()
+
+        request.session['user_login'] = auth_utils.serialize_user(user)
+
+        return request.session['user_login']
+
     return abstractviews.response(request, method='PUT', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
