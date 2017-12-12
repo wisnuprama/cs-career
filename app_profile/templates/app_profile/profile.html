@@ -6,33 +6,71 @@
 
 	<!-- {% endfor %} -->
 	<!--todo: silakan isi profil-->
-	<div>
+	<div class="flex-row">
 		<!--tanda seru-->
-		<div><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
-		<!--tulisan-->
-		<div><p> Silakan isi profil dahulu. </p></div>
+		<div class="flex-warning">
+			<div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+			<!--tulisan-->
+			<div class="flex-item-2"><p> Silakan isi profil dahulu. </p></div>
+		</div>
 		<!--button-->
-		<div><button> Edit Profil </button></div>
+		<div class="flex-item-3"><button> Edit Profil </button></div>
 	</div>
 	<!--todo: isi profile user-->
-	<div>
+	<div class="flex-column">
 		<!--nama-->
-		<span>
+		<span class="flex-profile-content">
 			<h3>
 				Nama
 			</h3>
-			<p>
+			<p> heheheheh
 				{{ user_login.full_name }}
 			</p>
 		</span>
 		<!--npm-->
-		<span></span>
+		<span class="flex-profile-content">
+			<h3>
+				NPM
+			</h3>
+			<p>
+				{{ user_login.npm }}
+			</p>
+		</span>
 		<!--keahlian-->
-		<span></span>
+		<span class="flex-profile-content">
+			<h3>
+				Keahlian
+			</h3>
+			<div class="keahlian">
+				<p>
+					dummy1
+				</p>
+				<p>
+					dummy2
+				</p>
+				<p>
+					dummy3
+				</p>
+			</div>
+		</span>
 		<!--email-->
-		<span></span>
+		<span class="flex-profile-content">
+			<h3>
+				Email
+			</h3>
+			<p>
+				{{ user_login.email }}
+			</p>
+		</span>
 		<!--account-->
-		<span></span>
+		<span class="flex-profile-content">
+			<h3>
+				Account
+			</h3>
+			<p>
+				{{ user_login.link_linkedin }}
+			</p>
+		</span>
 
 	</div>
 </div>

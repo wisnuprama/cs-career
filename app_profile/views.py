@@ -14,3 +14,7 @@ def index(request, data):
 
 def put_profile(request):
     pass
+
+
+def dummy(request):
+    return render(request, 'app_profile/edit_profile.html')
