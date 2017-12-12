@@ -4,8 +4,13 @@ const URL = {
     'POST': '/api/status/post/',
     'DELETE': '/api/status/delete/',
   },
-  'profile': {},
-  'friend': {},
+  'profile': {
+
+  },
+  'friend': {
+    'GET': '/api/friend/get-friend-candidate/',
+    'POST': '/api/friend/post-new-friend/',
+  },
 };
 
 const propState = {
@@ -187,6 +192,48 @@ $(document).ready(() => {
     const id = 'tab-status';
     openTab(event, id);
     scrollToId(id);
+  });
+
+  $('#friend-table').DataTable({
+    'bPaginate': false,
+    'bLengthChange': false,
+    'bInfo': false,
+    'ajax': {
+      'dataType': 'json',
+      'contentType': 'application/json; charshet=utf-8',
+      'url': URL.friend.GET,
+      'dataSrc': 'result',
+    },
+    'columns': [
+      {
+        'data': 'npm'
+      },
+      {
+        'data': 'full_name',
+        'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
+          $(nTd).text(oData.full_name);
+        }
+      },
+      {
+        'data': 'angkatan',
+        'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
+          $(nTd).text(oData.angkatan);
+        }
+      },
+      {
+        'data': null,
+        'defaultContent':'',
+        'fnCreatedCell':(nTd, sData, oData, iRow, iCol) => {
+          const exp = oData.expertise;
+          if(exp.length > 0){
+            for(let i=0; i < exp.length; i++){
+              let expert = exp[i];
+              $(nTd).append('<p>' + expert.expertise + ' (' + expert.level +')</p>')
+            }
+          }
+        }
+      },
+    ]
   });
 
 });

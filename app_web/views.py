@@ -73,4 +73,6 @@ def index_dashboard(request):
     friend_views.index(request, response)
     profile_views.index(request, response)
 
+    print(request.session['user_login'])
+
     return render(request, html, response)
