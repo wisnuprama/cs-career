@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.conf import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^', include('app_web.urls', namespace='web')),
+    url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('app_auth.urls', namespace='auth')),
     url(r'^api/friend/', include('app_friend.urls', namespace='api-friend')),
     url(r'^api/profile/', include('app_profile.urls', namespace='api-profile')),

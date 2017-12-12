@@ -1,0 +1,48 @@
+{% load static %}
+
+<div id="profile">
+	<!-- if belom nyambungin ke linkedin keluar ini -->
+	<!-- {% for req in request %} -->
+
+	<!-- {% endfor %} -->
+	<div class="warning-profile">
+		 <div class="row">
+		 	<div class="col-sm-3"><img src="{% static 'img/red_alert.png' %}"></div>
+	    	<div class="col-sm-4"><p> Silakan isi profil terlebih dahulu. </p></div>
+	    	<div class="col-sm-4"><button id="edit-profile" type="edit" href="edit_profile.html"> Edit Profil </button></div>
+	 	</div>
+	 	<table class="table borderless">
+	 		<tbody>
+	 			<tr>
+	 				<td>Nama</td>
+	 				<td>{{ nama }}</td>
+	 			</tr>
+
+	 			<tr>
+	 				<td>NPM</td>
+	 				<td>{{ npm }}</td>
+	 			</tr>
+
+	 			<tr>
+	 				<td>Keahlian</td>
+	 				<td>
+	 					{% for ahli in keahlian %}
+	 						<li>ahli</li>
+	 					{% endfor %}
+	 				</td>
+	 			</tr>
+
+	 			<tr>
+	 				<td>Email</td>
+	 				<td>{{ email }}</td>
+	 			</tr>
+
+	 			<tr>
+	 				<td>LinkedIn</td>
+	 				<td>{{ account }}</td>
+	 			</tr>
+	 		</tbody>
+	 	</table>
+	</div>
+</div>
+

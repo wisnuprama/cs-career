@@ -20,7 +20,8 @@ class User(DjangoUser):
     is_showing_score = models.BooleanField(default=False)
 
     # linkedin
-    # token_linkedin = models.CharField(blank=True, max_length=1000)
+    token_linkedin = models.CharField(blank=True, max_length=1000)
+    link_linkedin = models.CharField(blank=True, max_length=100)
 
     lastseen_at = models.DateTimeField('Last Seen at', auto_now=True, editable=False)
     created_at = models.DateTimeField('Created at', auto_now_add=True, editable=False)

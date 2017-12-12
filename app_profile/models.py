@@ -38,3 +38,4 @@ class Expertise(models.Model):
 
     class Meta:
         ordering = ('expertise', 'created_at')
+
