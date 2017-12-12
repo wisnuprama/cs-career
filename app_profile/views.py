@@ -34,3 +34,5 @@ def get_profile(request, data):
         return render(data, html, response)
 
 
+def put_profile(request):
+    pass
