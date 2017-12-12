@@ -5,44 +5,35 @@
 	<!-- {% for req in request %} -->
 
 	<!-- {% endfor %} -->
-	<div class="warning-profile">
-		 <div class="row">
-		 	<div class="col-sm-3"><img src="{% static 'img/red_alert.png' %}"></div>
-	    	<div class="col-sm-4"><p> Silakan isi profil terlebih dahulu. </p></div>
-	    	<div class="col-sm-4"><button id="edit-profile" type="edit" href="edit_profile.html"> Edit Profil </button></div>
-	 	</div>
-	 	<table class="table borderless">
-	 		<tbody>
-	 			<tr>
-	 				<td>Nama</td>
-	 				<td>{{ nama }}</td>
-	 			</tr>
+	<!--todo: silakan isi profil-->
+	<div>
+		<!--tanda seru-->
+		<div><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+		<!--tulisan-->
+		<div><p> Silakan isi profil dahulu. </p></div>
+		<!--button-->
+		<div><button> Edit Profil </button></div>
+	</div>
+	<!--todo: isi profile user-->
+	<div>
+		<!--nama-->
+		<span>
+			<h3>
+				Nama
+			</h3>
+			<p>
+				{{ user_login.full_name }}
+			</p>
+		</span>
+		<!--npm-->
+		<span></span>
+		<!--keahlian-->
+		<span></span>
+		<!--email-->
+		<span></span>
+		<!--account-->
+		<span></span>
 
-	 			<tr>
-	 				<td>NPM</td>
-	 				<td>{{ npm }}</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>Keahlian</td>
-	 				<td>
-	 					{% for ahli in keahlian %}
-	 						<li>ahli</li>
-	 					{% endfor %}
-	 				</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>Email</td>
-	 				<td>{{ email }}</td>
-	 			</tr>
-
-	 			<tr>
-	 				<td>LinkedIn</td>
-	 				<td>{{ account }}</td>
-	 			</tr>
-	 		</tbody>
-	 	</table>
 	</div>
 </div>
 
