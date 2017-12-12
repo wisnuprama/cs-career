@@ -1,5 +1,5 @@
+from app_profile import utils as profile_utils
 from django.shortcuts import render
-from django.shortcuts import reverse
 import app_auth.utils as auth_utils
 
 # Create your views here.
@@ -9,6 +9,7 @@ def get_profile(request, data):
 
     data_user = request.session['user_login']
 
+    data['user_riwayat'] = profile_utils.get_query_user_history(data_user['npm'])
     response['name'] = request.session['name']
     response['npm'] = data_user['npm']
     response['keahlian'] = data.session['keahlian']
@@ -32,4 +33,4 @@ def get_profile(request, data):
         html = 'app_profile/profile.html'
         return render(data, html, response)
 
-# def editProfile(response):
+

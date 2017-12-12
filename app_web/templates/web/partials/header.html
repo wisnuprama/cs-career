@@ -14,8 +14,10 @@
         <input type="search" href="" placeholder="Search">
         <a class="fa fa-search" aria-hidden="true" href=""></a>
       </div>
+      {% endif %}
       <div class="account">
         <div class="menu-dropdown">
+          {% if user_login %}
           <div id="btn-user">
             <img src="{% static 'img/user_dummy.png' %}">
           </div>
@@ -32,15 +34,34 @@
               <a class="content" href="{% url 'auth:logout' %}"> Logout </a>
             </div>
           </div>
-        </div>
-      </div>
-      {% else %}
-      <div class="account push-right">
-        <div class="menu-dropdown">
+          {% else %}
           <button id="btn-login"> Masuk </button>
+          <div id="menu-login" class="menu-content">
+            <span class="arrow-up"></span>
+            <div class="square">
+              <!--logged in-->
+              <div>
+                <form id="form" method="POST" action="{% url 'auth:login' %}">
+                  {% if messages %}
+                  <div class="messages">
+                    {% for message in messages %}
+                    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  {% csrf_token %}
+                  {{ login_form }}
+                  <br>
+                  <div class="center">
+                    <button id="submit" type="submit" class="" value="Submit"> Masuk </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endif %}
         </div>
       </div>
-      {% endif %}
     </div>
   </div>
 </nav>

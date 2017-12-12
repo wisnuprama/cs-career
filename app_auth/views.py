@@ -37,7 +37,6 @@ def auth_login(request):
                 # set user session
                 request.session['user_login'] = AuthUtils.serialize_user(user=user)
                 request.session['access_token'] = access_token
-                messages.success(request, "Login: success")
 
             else:
                 return HttpResponseForbidden(reason='Error: Unexpected behavior')
@@ -55,11 +54,8 @@ def auth_login(request):
 def auth_logout(request):
     if request.method == 'GET':
         request.session.flush()
-        mess = "Logout: Success"
     else:
         return HttpResponseBadRequest(reason='Error: Unexpected method')
-
-    messages.info(request, mess)
 
     # TODO FINISH WITH REVERSE URL
     return HttpResponseRedirect(reverse('web:index'))

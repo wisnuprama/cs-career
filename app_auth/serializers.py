@@ -8,4 +8,5 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('npm', 'username', 'full_name', 'email', 'role', 'angkatan')
+        fields = ('npm', 'username', 'full_name', 'email', 'role', 'angkatan',
+                  'token_linkedin', 'link_linkedin', 'lastseen_at')

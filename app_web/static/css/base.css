@@ -54,6 +54,7 @@ textarea {
   outline: none;
   overflow: auto;
   background-color: #fff;
+  border: 0.1rem solid rgba(171, 184, 193, 0.5);
 }
 
 textarea::-webkit-scrollbar {
@@ -69,10 +70,11 @@ button {
 input {
   border-radius: 50rem;
   outline: none;
+  border: 0.1rem solid rgba(171, 184, 193, 0.5);
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid rgba(171, 184, 193, 1);
 }
 
 h1 {
@@ -111,6 +113,17 @@ p {
 .username {
   font-weight: bold;
 }
+
+form {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* USE COMMENT TO SEPERATE BETWEEN APP */
 
 /* HOME */
@@ -267,7 +280,7 @@ p {
   padding-left: 2rem;
 }
 
-.header .navbar-base .navbar-right .account .menu-dropdown:hover #menu-account {
+.header .navbar-base .navbar-right .account .menu-dropdown:hover .menu-content {
   display: block;
 }
 
@@ -295,7 +308,6 @@ p {
   position: absolute;
   display: flex;
   flex-direction: column;
-  height: 21.5rem;
   width: 100%;
   top: 9rem;
   right: 10rem;
@@ -323,6 +335,41 @@ p {
   font-size: 1.65rem;
   cursor: default;
   height: 100%;
+}
+
+.header .navbar-base .navbar-right .account #menu-login {
+  right: -12rem;
+}
+
+.header .navbar-base .navbar-right .account #menu-login .square {
+  width: 30rem;
+  padding: 2rem;
+}
+
+#menu-login form {
+  display: flex;
+  flex-direction: column;
+}
+
+#menu-login .login-form-input {
+  outline: none;
+  padding: 1rem;
+  margin: .5rem 0 .5rem 0;
+}
+
+#menu-login form .messages .error {
+  background-color: #af515d;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+#menu-login button {
+  bottom: 0;
+  width: 70%;
+  padding: 1rem;
+  background-color: #abb8c1;
+  color: #fff;
 }
 
 /* HOME LAYOUT */
@@ -441,9 +488,10 @@ p {
 .dashboard .section-profile .profile .stats #stats-friends {
   text-decoration: none;
   outline: none;
+  cursor: pointer;
 }
 
-.dashboard .section-profile .profile .stats #stats-friends:hover {
+.dashboard .section-profile .profile .stats .stat-content:hover {
   background-color: rgba(171, 184, 193, 0.2);
 }
 
@@ -518,6 +566,7 @@ p {
   justify-content: flex-start;
   background-color: #fff;
   min-width: 70%;
+  max-width: 70%;
   min-height: 110%;
   border-radius: .5rem;
 }
@@ -564,7 +613,7 @@ p {
   transition: all 0.3s ease;
 }
 
-.dashboard .section-activity #tab-riwayat, #tab-status, #tab-teman {
+.dashboard .section-activity #tab-riwayat, #tab-status, #tab-friend {
   display: none;
 }
 
@@ -573,11 +622,44 @@ p {
   display: block;
 }
 
-/* STATUS */
-#tab-status {
+/* RIWAYAT */
+#tab-riwayat .content {
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 0 2rem 0;
 }
+
+#tab-riwayat .content table {
+  width: 75%;
+  max-height: 50%;
+  overflow: scroll;
+}
+
+#tab-riwayat .content tr:nth-child(odd) {
+  background-color: rgba(101, 104, 109, 0.3)
+}
+#tab-riwayat .content tr:nth-child(even) {
+  background-color: #fff
+}
+
+#tab-riwayat .content table thead {
+  background-color: #658190;
+  color: #fff;
+}
+
+#tab-riwayat .content table th {
+  padding: 2rem;
+}
+
+#tab-riwayat .content table td {
+  padding: 1rem;
+}
+
+/* STATUS */
 
 #tab-status #post-status {
   display: flex;
@@ -614,7 +696,6 @@ p {
   border-radius: 1rem;
   width: 100%;
   padding: 2rem 2rem 2rem 2rem;
-  border: 0.1rem solid rgba(171, 184, 193, 0.5);
 }
 
 #tab-status #post-status .input-status button {
@@ -628,7 +709,8 @@ p {
 
 #tab-status #timeline {
   display: block;
-  min-width: 100%;
+  padding: 0 1rem 0 1rem;
+  max-width: 100%;
   background-color: #fff;
 }
 
@@ -790,18 +872,70 @@ p {
     right: auto;
   }
 
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr { border: 1px solid rgba(103, 119, 113, 1); }
+
+  /* TODO MAKE TABLE BEHAVE LIKE ROW */
+  /* TODO td:before still silly */
+
+  td {
+    border: none;
+    border-bottom: 1px solid rgba(103, 119, 113, 0.6);
+    position: relative;
+    height: 10rem;
+  }
+
+  td:before {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 45%;
+    white-space: nowrap;
+  }
+
+  td:nth-of-type(1):before { content: "Mata Kuliah"; }
+  td:nth-of-type(2):before { content: "SKS"; }
+  td:nth-of-type(3):before { content: "Nilai"; }
+  td:nth-of-type(4):before { content: "Kode"; }
+
+  #tab-riwayat .content {
+    flex: 1 1 0;
+    min-height: 100%;
+  }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 450px) {
 
   .header .navbar-base .navbar-right .account {
     margin: 0;
     right: 2rem;
   }
 
-  .header .navbar-base .navbar-right .account .menu-content .square {
+  .header .navbar-base .navbar-right .account .menu-dropdown #btn-login {
+    right: 1.5rem;
+    width: 8rem;
+    padding: 0.8rem;
+  }
+
+  .header .navbar-base .navbar-right .account #menu-account .square {
     width: 130%;
     right: 15rem;
   }
 
+  .header .navbar-base .navbar-right .account #menu-login .arrow-up {
+    margin-left: 2.5rem;
+  }
+  .header .navbar-base .navbar-right .account #menu-login .square {
+    width: 30rem;
+    right: 11rem;
+  }
 }

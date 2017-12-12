@@ -29,6 +29,7 @@ def get_or_create_sso_group():
     if not Group.objects.filter(name=SSO_GROUP_NAME).exists():
         perm = get_permission_for_sso_user()
         group = Group(name=SSO_GROUP_NAME)
+        group.save()
         group.permissions.set(perm)
         group.save()
     else:

@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from app_auth import forms as auth_form
 from app_status import views as status_views
 from app_friend import views as friend_views
+from app_profile import views as profile_views
 from core import strings
 
 
@@ -70,5 +71,6 @@ def index_dashboard(request):
     '''
     status_views.index(request, response)
     friend_views.index(request, response)
+    profile_views.index(request, response)
 
     return render(request, html, response)
