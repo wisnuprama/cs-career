@@ -1,0 +1,24 @@
+{% if user_riwayat %}
+<div class="content table table-responsive">
+  <table>
+    <thead>
+      <th> Kode </th>
+      <th> Mata Kuliah </th>
+      <th> SKS</th>
+      <th> Nilai </th>
+    </thead>
+    {% for riwayat in user_riwayat %}
+    <tr>
+      <td> {{riwayat.kode_mk}} </td>
+      <td> {{riwayat.nama_mk}} </td>
+      <td> {{riwayat.jml_sks}} </td>
+      <td> {{riwayat.nilai}} </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% else %}
+<div>
+  <span> Belum ada data </span>
+</div>
+{% endif %}
