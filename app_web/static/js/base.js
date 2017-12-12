@@ -4,9 +4,7 @@ const URL = {
     'POST': '/api/status/post/',
     'DELETE': '/api/status/delete/',
   },
-  'profile': {
-
-  },
+  'profile': {},
   'friend': {
     'GET': '/api/friend/get-friend-candidate/',
     'POST': '/api/friend/post-new-friend/',
@@ -27,13 +25,20 @@ const canLoadPage = () => {
 };
 
 const addStatusToTimeline = (status, to) => {
+
+  let user_photo = '/static/img/user_dummy.png';
+
+  if(status.user.picture_url !== ''){
+    user_photo = status.user.picture_url;
+  }
+
   html = '<div id="status-' + status.id + '" class="status">\n' +
       '     <div class="user-dp">\n' +
-      '       <img src="/static/img/user_dummy.png">\n' +
+      '       <img src="' + user_photo + '">\n' +
       '     </div>\n' +
       '     <div class="status-content">\n' +
       '       <span>\n' +
-      '         <h3>' + status.user.first_name + '</h3>\n' +
+      '         <h3>' + status.user.full_name + '</h3>\n' +
       '         <p>' + status.user.username + '</p>\n' +
       '       </span>\n' +
       '         <p>' + status.content + '</p>\n' +
@@ -41,16 +46,16 @@ const addStatusToTimeline = (status, to) => {
       '      <div class="right-status">' +
       '        <span class="status-date">\n' + status.created_at + '</span>\n' +
       '       <button class="fa fa-trash-o trash" aria-hidden="true"' +
-      '         onclick="deleteStatus(\'status-' + status.id +'\')"></button>' +
+      '         onclick="deleteStatus(\'status-' + status.id + '\')"></button>' +
       '      </div>\n' +
       ' </div>';
 
   const newStatus = $(html);
   newStatus.hide();
-  if(to === 'top' || to === 'TOP'){
+  if (to === 'top' || to === 'TOP') {
     $('#timeline').prepend(newStatus);
     newStatus.show('normal');
-  } else if (to==='bottom' || to==='BOTTOM') {
+  } else if (to === 'bottom' || to === 'BOTTOM') {
     $('#timeline').append(newStatus);
     newStatus.fadeIn('slow');
   }
@@ -66,7 +71,7 @@ WINDOW.scroll(() => {
       url: propState.status.next,
       success: (response) => {
         const result = response.result;
-        for(let i=0; i < result.length; i++){
+        for (let i = 0; i < result.length; i++) {
           addStatusToTimeline(result[i], 'BOTTOM')
         }
 
@@ -118,7 +123,7 @@ const openTab = (event, idTab) => {
   }
   $(event.currentTarget).addClass(active);
   // scroll to that tab button, could be more well-design
-  $('#activity-tab').animate({scrollLeft:event.clientX-100}, 750);
+  $('#activity-tab').animate({scrollLeft: event.clientX - 100}, 750);
 
   // change tab content
   const tabContent = $('.tab-content');
@@ -142,7 +147,7 @@ const calculateChar = () => {
 $(document).ready(() => {
 
   // SCROLL TO PROFILE TAB BUTTON
-  $('#activity-tab').animate({scrollLeft:50}, 750);
+  $('#activity-tab').animate({scrollLeft: 50}, 750);
 
   // BIND CLICK: Button kirim status
   $('#submit-post').on('click', (event) => {
@@ -182,14 +187,20 @@ $(document).ready(() => {
     event.preventDefault();
   });
 
-  $('#stats-friends').on('click', (event)=>{
+  $('#stats-friends').on('click', (event) => {
     const id = 'tab-friend';
     openTab(event, id);
     scrollToId(id);
   });
 
-  $('#stats-status').on('click', (event)=>{
+  $('#stats-status').on('click', (event) => {
     const id = 'tab-status';
+    openTab(event, id);
+    scrollToId(id);
+  });
+
+  $('#tab-button-edit-profile').on('click', (event) => {
+    const id = 'tab-edit-profile';
     openTab(event, id);
     scrollToId(id);
   });
@@ -222,13 +233,13 @@ $(document).ready(() => {
       },
       {
         'data': null,
-        'defaultContent':'',
-        'fnCreatedCell':(nTd, sData, oData, iRow, iCol) => {
+        'defaultContent': '',
+        'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
           const exp = oData.expertise;
-          if(exp.length > 0){
-            for(let i=0; i < exp.length; i++){
+          if (exp.length > 0) {
+            for (let i = 0; i < exp.length; i++) {
               let expert = exp[i];
-              $(nTd).append('<p>' + expert.expertise + ' (' + expert.level +')</p>')
+              $(nTd).append('<p>' + expert.expertise + ' (' + expert.level + ')</p>')
             }
           }
         }

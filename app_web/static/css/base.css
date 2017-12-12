@@ -571,6 +571,10 @@ form {
   border-radius: .5rem;
 }
 
+.dashboard #section-activity-2, #section-activity-3 {
+  display: none;
+}
+
 .dashboard .section-activity .activity-tab {
   display: flex;
   justify-content: flex-start;
@@ -613,7 +617,7 @@ form {
   transition: all 0.3s ease;
 }
 
-.dashboard .section-activity #tab-riwayat, #tab-status, #tab-friend {
+.dashboard .section-activity #tab-riwayat, #tab-status, #tab-friend, #tab-edit-profile {
   display: none;
 }
 
@@ -637,26 +641,28 @@ form {
   display: flex;
   flex-direction:row;
   justify-content: space-around;
+  color: #af515d;
 }
 
 .flex-item-1{
-  flex-basis: 10% | auto;
+  flex-basis: 10% auto;
   margin-right: 2rem;
 }
 
 .flex-item-2{
-  flex-basis: 40% | auto;
+  flex-basis: 40% auto;
 }
 
 .flex-item-3{
-  flex-basis: 30% | auto;
+  flex-basis: 30% auto;
 }
 
-#edit-profile-button {
+#tab-button-edit-profile {
   background-color: #fff;
   color: #658190;
   border: 0.1rem solid #658190;
   border-radius: 50rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .flex-profile-content {
@@ -665,7 +671,7 @@ form {
   align-content: center;
   align-items: baseline;
   justify-content: flex-start;
-  padding-left: 3rem;
+  padding: 0 3rem 0 3rem;
 }
 
 .flex-profile-content h3 {
@@ -683,6 +689,11 @@ form {
 
 .flex-profile-content .group-keahlian .keahlian {
   margin: 0 1rem 0 1rem;
+}
+
+#tab-edit-profile {
+  height: 100rem;
+  width: 100rem;
 }
 
 /* RIWAYAT */
