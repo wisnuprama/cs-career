@@ -1,7 +1,9 @@
 from app_profile import utils as profile_utils
-from django.http import QueryDict
+from django.http import QueryDict, HttpResponseRedirect
+from django.shortcuts import reverse
 from core.abstract import views as abstractviews
 from app_auth import utils as auth_utils
+from .models import Expertise
 
 # Create your views here.
 response = {}
@@ -39,6 +41,18 @@ def put_profile(request):
         if 'link_linkedin' in PUT:
             user.link_linkedin = PUT.get('link_linkedin')
 
+        if 'expertise' in PUT and 'level' in PUT:
+
+            expertise = {
+                'expertise': PUT.get('expertise'),
+                'level': PUT.get('level')
+            }
+
+            if 'expertise' in request.session:
+                request.session['expertise'].append(expertise)
+            else:
+                request.session['expertise'] = [expertise]
+
         user.save()
 
         request.session['user_login'] = auth_utils.serialize_user(user)
@@ -48,6 +62,12 @@ def put_profile(request):
     return abstractviews.response(request, method='PUT', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
 
 
+def save_profile(request):
 
-def dummy(request):
-    return render(request, 'app_profile/edit_profile.html')
+    if 'expertise' in request.session:
+        lst = request.session['expertise']
+        for ahli in lst:
+            expert = Expertise(user=user, expertise = ahli.get('expertise'), level = ahli.get('level'))
+            expert.save()
+
+    return HttpResponseRedirect(reverse('web:dashboard'))

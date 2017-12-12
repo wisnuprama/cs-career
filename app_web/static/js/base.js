@@ -4,7 +4,10 @@ const URL = {
     'POST': '/api/status/post/',
     'DELETE': '/api/status/delete/',
   },
-  'profile': {},
+  'profile': {
+    'PUT': 'api/profile/put',
+    'SAVE': 'api/profile/save',
+  },
   'friend': {
     'GET': '/api/friend/get-friend-candidate/',
     'POST': '/api/friend/post-new-friend/',
@@ -157,6 +160,25 @@ const addFriend = (npm) => {
     data: {
       'npm':npm,
     },
+    success: (response) => {
+
+    },
+    error: (response) => {
+
+    },
+  })
+};
+
+const saveProfile = () => {
+
+  const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+
+  $.ajax({
+    method: 'PUT',
+    headers: {
+      'X-CSRFToken': csrfToken,
+    },
+    url: URL.profile.SAVE,
     success: (response) => {
 
     },
