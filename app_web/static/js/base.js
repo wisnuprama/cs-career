@@ -144,6 +144,28 @@ const calculateChar = () => {
 
 };
 
+const addFriend = (npm) => {
+
+  const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+
+  $.ajax({
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrfToken,
+    },
+    url: URL.friend.POST,
+    data: {
+      'npm':npm,
+    },
+    success: (response) => {
+
+    },
+    error: (response) => {
+
+    },
+  })
+};
+
 $(document).ready(() => {
 
   // SCROLL TO PROFILE TAB BUTTON
@@ -244,6 +266,15 @@ $(document).ready(() => {
           }
         }
       },
+      {
+        'data': null,
+        'defautContent': '',
+        'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
+          const npm = oData.npm;
+          const param = `'${npm}', ${nTd}`;
+          $(nTd).append('<button onclick="addFriend(' + param + ')"> Tambah Teman</button>');
+        }
+      }
     ]
   });
 

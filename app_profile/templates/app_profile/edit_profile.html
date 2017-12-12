@@ -17,6 +17,22 @@
     // Handle the successful return from the API call
     function onSuccess(data) {
         console.log(data);
+        const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+        $.ajax({
+          method:'PUT',
+          headers: {
+            'X-CSRFToken': csrfToken,
+          },
+          url: '/api/profile/put/',
+          data: {
+            'first_name': data.firstName,
+            'last_name': data.lastName,
+            'email': data.emailAddress,
+            'picture_url': data.pictureUrl,
+            'id_linkedin': data.id,
+            'link_linkedin': data.publicProfileUrl,
+          }
+        })
     }
 
     // Handle an error response from the API call
