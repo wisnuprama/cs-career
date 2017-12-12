@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
     password_attrs = {
         'type': 'password',
         'cols': 50,
-        'class': 'login-form-textarea',
+        'class': 'login-form-input',
         'id': 'password-input',
         'name': 'password-input',
         'placeholder': 'SSO Password',

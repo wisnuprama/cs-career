@@ -3,20 +3,6 @@
 {% block content %}
 <section>
   <!-- temporary -->
-  <div class="container" style="margin-top: 20rem">
-    <form id="form" method="POST" action="{% url 'auth:login' %}">
-      {% if messages %}
-      <div class="messages">
-        {% for message in messages %}
-        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-        {% endfor %}
-      </div>
-      {% endif %}
-      {% csrf_token %}
-      {{ login_form }}
-      <button id="submit" type="submit" class="btn btn-lg btn-block btn-info" value="Submit"> Masuk </button>
-      <br>
-    </form>
-  </div>
+
 </section>
 {% endblock %}

@@ -34,10 +34,12 @@ If you are a Windows user just install from python website.
    To deactivate the env, run ```deactivate```
 5. Install dependencies with pip ```pip3 install -r requirements.txt```
 6. Setup the database: 
+    
     ```
     python3 manage.py makemigrations
     python3 manage.py migrate
     ```
+    
    or you can run ```$ ./deplyoment.sh```
 7. Run ```python3 manage.py collectstatic``` to collect static files (image, js, css, etc.)
 8. Run server ```python3 manage.py runserver``` or you can run ```$ ./runserver.sh```
@@ -63,15 +65,18 @@ If you are a Windows user just install from python website.
     2. kita mulai dari membuat fungsi di views masing2 seperti yang dijelaskan di TODO
     3. pada intinya, membuat fungsi yang hanya mengedit isi dictionary yang akan di render.
        isi data dengan hal-hal yang akan ditampilkan di halaman dashboard.
+       
         ```
         def function(request, data):
             data['query_friend'] = [1,2,3,4,5]
             ...
         ```
+        
     4. untuk mempermudah, sebaiknya membuat fungsi-fungsi yang mengembalikan data-data yang
        diperlukan. Buatlah file di app masing, ```utils.py```. Untuk contoh, bisa dilihat di
        app_auth, app_status, app_web, app_friend.
        misal di ```utils.py``` app_friend
+       
        ```
        def get_user_friends(user):
             return Friendship.objects.filter(user1=user)
@@ -84,10 +89,12 @@ If you are a Windows user just install from python website.
             
             return friendship
        ```
+       
        dan banyak lagi yang bisa dibuat untuk membantu views bekerja.
        Catatan: buatlah fungsi yang spesifik melakukan sesuatu.
     5. setelah membuat views di app masing2, buat kembali app_web/views.py bagian fungsi
        index_dashboard, dan panggilah fungsi tersebut, misal:
+       
        ```
        from app_friend import views as friend_views 
        ...
@@ -105,6 +112,7 @@ If you are a Windows user just install from python website.
            return render()
            
        ```
+       
     6. Backend Selesai jika tidak membuat api untuk ajax atau webservice
     7. Selanjutnya buka app_web/templates/web/index.html dan baca TODO dibawah,
        pada intinya buat file html di templates app masing2 dengan susunan directory

@@ -112,20 +112,32 @@ const openTab = (event, idTab) => {
     $(tabButton[i]).removeClass(active)
   }
   $(event.currentTarget).addClass(active);
+  // scroll to that tab button, could be more well-design
+  $('#activity-tab').animate({scrollLeft:event.clientX-100}, 750);
 
   // change tab content
   const tabContent = $('.tab-content');
   for (i = 0; i < tabContent.length; i++) {
     $(tabContent[i]).hide();
   }
+
   $('\#' + idTab).fadeToggle('slow');
 };
+
+const scrollToId = (id) => {
+  const targetElem = $('#' + id);
+  // CANT USE WINDOW
+  $('html,body').animate({scrollTop: targetElem.offset().top - 80}, 1000);
+}
 
 const calculateChar = () => {
 
 };
 
 $(document).ready(() => {
+
+  // SCROLL TO PROFILE TAB BUTTON
+  $('#activity-tab').animate({scrollLeft:50}, 750);
 
   // BIND CLICK: Button kirim status
   $('#submit-post').on('click', (event) => {
@@ -163,6 +175,18 @@ $(document).ready(() => {
     });
 
     event.preventDefault();
+  });
+
+  $('#stats-friends').on('click', (event)=>{
+    const id = 'tab-friend';
+    openTab(event, id);
+    scrollToId(id);
+  });
+
+  $('#stats-status').on('click', (event)=>{
+    const id = 'tab-status';
+    openTab(event, id);
+    scrollToId(id);
   });
 
 });
