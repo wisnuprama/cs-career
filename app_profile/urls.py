@@ -3,7 +3,7 @@ from .views import put_profile, dummy
 
 urlpatterns = [
 	url(r'^dummy/$', dummy),
-	url(r'^$', put_profile, name='put-profile'),
+	url(r'^put/$', put_profile, name='put-profile'),
 ]
 
 

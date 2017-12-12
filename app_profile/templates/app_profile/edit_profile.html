@@ -1,8 +1,48 @@
-<div class="center">
-    <script type="in/Login"></script>
+
+<div class="flex-row">
+    <!--tanda seru-->
+    <div class="flex-warning">
+        <div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+        <!--tulisan-->
+        <div class="flex-item-2"><p> Simpan perubahan Anda. </p></div>
+    </div>
+    <!--button-->
+    <div class="flex-item-3"><button> Simpan </button></div>
 </div>
 
-<div></div>
+<div class="flex-column">
+    <div id="edit-profile"> </div>
+        <span class="flex-profile-content">
+            <h3> NPM </h3>
+            <p> {{ user_login.npm }} </p>
+        </span>
+        <span class="flex-profile-content">
+            <h3> Data Pribadi </h3>
+            <div class="center">
+                <script type="in/Login"></script>
+            </div>
+        </span>
+        <span class="flex-profile-content">
+            <h3> Keahlian </h3>
+            <p> dummy </p>
+        </span>
+        <span class="flex-profile-content">
+            <h3> Tampilkan Nilai </h3>
+
+            <label class="container">Tidak
+              <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+              </label>
+            <label class="container">Ya
+              <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </span>
+
+
+</div>
+
+
 
 
 

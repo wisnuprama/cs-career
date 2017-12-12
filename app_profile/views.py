@@ -1,6 +1,7 @@
 from app_profile import utils as profile_utils
 from django.shortcuts import render
-import app_auth.utils as auth_utils
+from core.abstract import views as abstractviews
+
 
 # Create your views here.
 response = {}
@@ -13,7 +14,22 @@ def index(request, data):
 
 
 def put_profile(request):
-    pass
+
+    def callback(user):
+
+        print(request.body['data'])
+
+        result = {
+            'username': user.username,
+            
+        }
+        return result
+
+        # status code for delete:
+        #   200 if the response include the entity
+        #   204 if the response doesnt include the entity
+    return abstractviews.response(request, method='PUT', auth_type=abstractviews.AUTH_TYPE['LOGIN'], callback=callback)
+
 
 
 def dummy(request):
