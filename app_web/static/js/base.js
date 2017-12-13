@@ -4,7 +4,10 @@ const URL = {
     'POST': '/api/status/post/',
     'DELETE': '/api/status/delete/',
   },
-  'profile': {},
+  'profile': {
+    'PUT': '/api/profile/put/',
+    'SAVE': '/api/profile/save/',
+  },
   'friend': {
     'GET': '/api/friend/get-friend-candidate/',
     'POST': '/api/friend/post-new-friend/',
@@ -18,6 +21,43 @@ const propState = {
     'previous': URL.status.GET + '?page=1',
   },
 };
+
+
+// Setup an event listener to make an API call once auth is complete
+function onLinkedInLoad() {
+  IN.Event.on(IN, "auth", getProfileData);
+}
+
+// Handle the successful return from the API call
+function onSuccess(data) {
+  console.log(data);
+  const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+  $.ajax({
+    method:'PUT',
+    headers: {
+      'X-CSRFToken': csrfToken,
+    },
+    url: '/api/profile/put/',
+    data: {
+      'first_name': data.firstName,
+      'last_name': data.lastName,
+      'email': data.emailAddress,
+      'picture_url': data.pictureUrl,
+      'id_linkedin': data.id,
+      'link_linkedin': data.publicProfileUrl,
+    }
+  })
+}
+
+// Handle an error response from the API call
+function onError(error) {
+  console.log(error);
+}
+
+// Use the API call wrapper to request the member's basic profile data
+function getProfileData() {
+  IN.API.Raw("/people/~:(firstName,lastName,siteStandardProfileRequest,emailAddress,id,picture-url,public-profile-url)").result(onSuccess).error(onError);
+}
 
 const canLoadPage = () => {
   return $('.status').length > 10 && !propState.status.progress
@@ -166,6 +206,37 @@ const addFriend = (npm) => {
   })
 };
 
+const saveProfile = () => {
+
+  const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+  const radio = $('input[name=radio]:checked', '#form-score').val();
+
+  let value = false;
+  if (radio === 'Ya') {
+    value = true;
+  }
+
+  $.ajax({
+    method: 'PUT',
+    headers: {
+      'X-CSRFToken': csrfToken,
+    },
+    data: {
+      'is_showing_score': value,
+    },
+    url: URL.profile.SAVE,
+    success: (response) => {
+      const mess = $('#message-success');
+      mess.show().delay(3000).fadeOut();
+      mess.css('display','flex');
+      location.reload();
+    },
+    error: (response) => {
+
+    },
+  })
+};
+
 $(document).ready(() => {
 
   // SCROLL TO PROFILE TAB BUTTON
@@ -221,10 +292,14 @@ $(document).ready(() => {
     scrollToId(id);
   });
 
-  $('#tab-button-edit-profile').on('click', (event) => {
+  $('#tab-button-edit-profile,#menu-edit-profile').on('click', (event) => {
     const id = 'tab-edit-profile';
     openTab(event, id);
     scrollToId(id);
+  });
+
+  $('#save-button').on('click', (event) => {
+    saveProfile()
   });
 
   $('#friend-table').DataTable({
@@ -266,15 +341,15 @@ $(document).ready(() => {
           }
         }
       },
-      {
-        'data': null,
-        'defautContent': '',
-        'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
-          const npm = oData.npm;
-          const param = `'${npm}', ${nTd}`;
-          $(nTd).append('<button onclick="addFriend(' + param + ')"> Tambah Teman</button>');
-        }
-      }
+      // {
+      //   'data': null,
+      //   'defautContent': '',
+      //   'fnCreatedCell': (nTd, sData, oData, iRow, iCol) => {
+      //     const npm = oData.npm;
+      //     const param = `'${npm}', ${nTd}`;
+      //     $(nTd).append('<button onclick="addFriend(' + param + ')"> Tambah Teman</button>');
+      //   }
+      // }
     ]
   });
 

@@ -1,48 +1,40 @@
-<div class="center">
-    <script type="in/Login"></script>
+<div class="flex-row">
+    <!--tanda seru-->
+    <div class="flex-warning">
+        <div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+        <!--tulisan-->
+        <div class="flex-item-2"><p> Simpan perubahan Anda. </p></div>
+    </div>
+    <!--button href="{% url 'api-profile:save-profile' %}" -->
+    <button id="save-button" type="submit" value="submit"> Simpan </button>
 </div>
-
-<div></div>
-
-
-
-
-<script type="text/javascript">
-
-    // Setup an event listener to make an API call once auth is complete
-    function onLinkedInLoad() {
-        IN.Event.on(IN, "auth", getProfileData);
-    }
-
-    // Handle the successful return from the API call
-    function onSuccess(data) {
-        console.log(data);
-        const csrfToken = $('[name=csrfmiddlewaretoken]').val();
-        $.ajax({
-          method:'PUT',
-          headers: {
-            'X-CSRFToken': csrfToken,
-          },
-          url: '/api/profile/put/',
-          data: {
-            'first_name': data.firstName,
-            'last_name': data.lastName,
-            'email': data.emailAddress,
-            'picture_url': data.pictureUrl,
-            'id_linkedin': data.id,
-            'link_linkedin': data.publicProfileUrl,
-          }
-        })
-    }
-
-    // Handle an error response from the API call
-    function onError(error) {
-        console.log(error);
-    }
-
-    // Use the API call wrapper to request the member's basic profile data
-    function getProfileData() {
-        IN.API.Raw("/people/~:(firstName,lastName,siteStandardProfileRequest,emailAddress,id,picture-url,public-profile-url)").result(onSuccess).error(onError);
-    }
-
-</script>
+<div class="flex-column">
+    <span id="message-success"> Berhasil tersimpan </span>
+    <div id="edit-profile"> </div>
+        <span class="flex-profile-content">
+            <h3> NPM </h3>
+            <p> {{ user_login.npm }} </p>
+        </span>
+        <span class="flex-profile-content">
+            <h3> Data Pribadi </h3>
+            <div class="center">
+                <script type="in/Login"></script>
+            </div>
+        </span>
+        <span class="flex-profile-content">
+            <h3> Keahlian </h3>
+            <p> dummy </p>
+        </span>
+        <form id="form-score" class="flex-profile-content">
+            <h3> Tampilkan Nilai </h3>
+            <label class="container">Tidak
+              <input class="radio-score" type="radio" checked="checked" name="radio" value="Tidak">
+                <span class="checkmark"></span>
+              </label>
+            <label class="container">Ya
+              <input class="radio-score" type="radio" name="radio" value="Ya">
+                <span class="checkmark"></span>
+            </label>
+        </form>
+    </div>
+</div>
