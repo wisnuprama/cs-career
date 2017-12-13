@@ -37,3 +37,4 @@ class TestFriendApp(TestCase):
         views.index(self.request, data)
         self.assertTrue(bool(data))
         self.assertTrue('user_riwayat' in data)
+

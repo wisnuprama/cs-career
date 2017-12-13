@@ -14,10 +14,9 @@ def index(request, data):
 def put_profile(request):
     def callback(user):
         PUT = QueryDict(request.body)
-        print(PUT)
-        print('first_name' in PUT)
 
         if 'first_name' in PUT:
+            print('hehe')
             user.first_name = PUT.get('first_name')
 
         if 'last_name' in PUT:
