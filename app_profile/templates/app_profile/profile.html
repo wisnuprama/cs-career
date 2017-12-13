@@ -8,10 +8,13 @@
   <!--todo: silakan isi profil-->
   <div class="flex-row">
     <!--tanda seru-->
+
     <div class="flex-warning">
+      {% if not user_login.link_linkedin %}
       <div class="flex-item-1"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
       <!--tulisan-->
       <div class="flex-item-2"><p> Silakan isi profil dahulu. </p></div>
+      {% endif %}
     </div>
     <!--button-->
     <div class="flex-item-3">

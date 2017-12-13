@@ -11,7 +11,7 @@
     <div class="navbar-right">
       {% if user_login %}
       <div class="search-bar">
-        <input type="search" href="" placeholder="Search">
+        <input type="search" href="" placeholder="Search" id="friend-search">
         <a class="fa fa-search" aria-hidden="true" href=""></a>
       </div>
       {% endif %}
@@ -34,7 +34,7 @@
                 <span class="name"> {{ user_login.full_name }} </span>
               </div>
               <!--TODO ADD EDIT PROFILE URL-->
-              <a class="content" href="{% url 'web:dashboard' %}"> Edit Profile </a>
+              <a id="menu-edit-profile" class="content"> Edit Profile </a>
               <a class="content" href="{% url 'auth:logout' %}"> Logout </a>
             </div>
           </div>

@@ -31,8 +31,8 @@ class User(DjangoUser):
         return self.npm
 
     def set_user_data(self, **kwargs):
-        for key,value in kwargs:
-            setattr(self, key, value)
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
 
     def get_npm(self):
         return self.npm

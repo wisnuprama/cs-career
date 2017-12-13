@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group, Permission
-from django.contrib.sessions.models import Session
+
 from .models import User
 from .serializers import UserSerializer
 
@@ -81,26 +81,11 @@ def get_or_create_user(npm, **kwargs):
 def get_user_queryset(**kwargs):
     return User.objects.filter(**kwargs)
 
+
 def get_except_user_queryset(**kwargs):
     return User.objects.exclude(**kwargs)
-
-def check_user_session_existence(request):
-    print('haha')
-    sess_key = request.COOKIES['sessionid']
-    return Session.objects.filter(session_key=sess_key).exists()
-
-
-def set_user_session_data(request):
-    pass
-
-
-def get_user_session(request):
-    sess_key = request.COOKIES['sessionid']
-    session = Session.objects.get(session_key=sess_key)
-    return session
 
 
 def serialize_user(user):
     from core.utils import serialize_instance
     return serialize_instance(UserSerializer, user)
-
