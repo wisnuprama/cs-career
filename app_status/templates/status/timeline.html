@@ -18,7 +18,11 @@
   {% for status in query_of_status %}
   <div id="status-{{status.id}}" class="status">
     <div class="user-dp">
+      {% if user_login.picture_url %}
+      <img src="{{ user_login.picture_url }}">
+      {% else %}
       <img src="{% static 'img/user_dummy.png' %}">
+      {% endif %}
     </div>
     <div class="status-content">
               <span>
