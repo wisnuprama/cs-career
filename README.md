@@ -51,8 +51,10 @@ Master:
 1. Connect to the team with project B
 2. Add Friend
 3. Add/edit User expertise
-Frontend
+
+Frontend:
 1. Login button
+
 Backend
 1. Backend: latest status is showing different user's status
       
