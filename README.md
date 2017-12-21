@@ -4,9 +4,11 @@ visit us http://cs-career.herokuapp.com/
 
 ## About
 
+[[https://github.com/wisnuprama/repository/blob/master/tp_2_ppw/screenshot/cs1.png|alt=status]]
+[[https://github.com/wisnuprama/repository/blob/master/tp_2_ppw/screenshot/cs2.png|alt=edit-profile]]
+
 ### Status
-[![pipeline status](https://gitlab.com/ppwf01/the-next-ling-in/badges/master/pipeline.svg)](https://gitlab.com/ppwf01/ling-in/commits/master)
-[![coverage report](https://gitlab.com/ppwf01/the-next-ling-in/badges/master/coverage.svg)](https://gitlab.com/ppwf01/ling-in/commits/master)
+pipeline & coverage on gitlab repository
 
 ### Anggota Kelompok
 |   Nama                     | NPM        |
