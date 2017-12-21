@@ -4,9 +4,6 @@ visit us http://cs-career.herokuapp.com/
 
 ## About
 
-[[https://github.com/wisnuprama/cs-career/blob/master/tp_2_ppw/screenshot/sc1.png|alt=status]]
-[[https://github.com/wisnuprama/cs-career/blob/master/tp_2_ppw/screenshot/cs2.png|alt=edit-profile]]
-
 ### Status
 pipeline & coverage on gitlab repository
 
@@ -59,6 +56,10 @@ Frontend:
 
 Backend
 1. Backend: latest status is showing different user's status
+
+### Screenshot
+![Alt text](tp_2_ppw/screenshot/sc1.png?raw=true "Status page")
+![Alt text](tp_2_ppw/screenshot/cs2.png?raw=true "edit profile page")
       
 ## Credit
 Our lecturer: Ibu Maya Retno Ayu Setyautami S.Kom., M.Kom.
