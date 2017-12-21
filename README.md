@@ -4,8 +4,8 @@ visit us http://cs-career.herokuapp.com/
 
 ## About
 
-[[https://github.com/wisnuprama/repository/blob/master/tp_2_ppw/screenshot/cs1.png|alt=status]]
-[[https://github.com/wisnuprama/repository/blob/master/tp_2_ppw/screenshot/cs2.png|alt=edit-profile]]
+[[https://github.com/wisnuprama/cs-career/blob/master/tp_2_ppw/screenshot/sc1.png|alt=status]]
+[[https://github.com/wisnuprama/cs-career/blob/master/tp_2_ppw/screenshot/cs2.png|alt=edit-profile]]
 
 ### Status
 pipeline & coverage on gitlab repository
